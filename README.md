@@ -5,16 +5,17 @@ Himice 活动项目预算表 SOP，供项目同事将客户报价转为规范的
 ## 包含内容
 
 ```text
-awesome-himice-sop-skill/
-├── SKILL.md                         # AI 执行规则
-├── agents/openai.yaml               # Codex 显示与调用配置
+.
+├── README.md                         # 同事使用说明
+├── SKILL.md                          # AI 执行规则
+├── agents/openai.yaml                # Codex 显示与调用配置
 ├── assets/【项目预算表】鱼鹰号+活动名称.xlsx  # 空白预算表模板
-└── references/budget-rules.md       # 公司预算与费用标准
+└── references/budget-rules.md        # 公司预算与费用标准
 ```
 
 ## 使用前准备
 
-1. 将整个 `awesome-himice-sop-skill` 文件夹安装或复制到所用 AI 工具的 Skills 目录。
+1. 克隆本仓库，或将整个仓库目录安装/复制到所用 AI 工具的 Skills 目录；仓库根目录已是完整 Skill 包。
 2. 安装 [OfficeCLI](https://github.com/iOfficeAI/OfficeCLI)，用于读取、修改、插入行、校验公式与渲染 `.xlsx`。
 3. 准备客户报价、供应商成本（如有）和项目预算模板。
 
