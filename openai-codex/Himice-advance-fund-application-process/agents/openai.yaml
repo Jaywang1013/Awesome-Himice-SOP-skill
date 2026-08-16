@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice 备用金申请流程"
+  short_description: "根据项目预算本地生成预估协作人审批表并核对金额和毛利率"
+  default_prompt: "Use $himice-advance-fund-application-process to create a local-only advance fund application from this budget and customer details."
