@@ -24,7 +24,7 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex 与 DeepSeek Harness�
 | `himice-budget-process` | 从客户报价、供应商成本与模板生成项目预算表，执行表头、代付、操作费用、现金项与公式核验。 |
 | `himice-officecli` | 使用 OfficeCLI 安全编辑、校验和渲染 Excel、Word、PowerPoint。 |
 | `himice-vibevoice` | 使用 VibeVoice-ASR 转写已获授权的会议/展览录音，结合会展和厦门术语生成纪要与行动项。 |
-| `himice-operating-expense-reimbursement-process` | 将活动票据录入结算表“结算-项目收支明细”页，核对付款路径、金额合计、去重、缺凭证与待财务确认项；其余三张子表不改动。 |
+| `himice-operating-expense-reimbursement-process` | 使用内置的单表《项目操作收支明细表》，将发票、行程单、支付截图与经手人自动录入；逐笔拆分滴滴/货拉拉行程、按路线写备注、勾选实际发票并核对付款路径与合计。 |
 
 ## 安装 Codex 版本
 
@@ -64,4 +64,4 @@ DSH 会自动发现 `~/.dsh/skills/<skill>/SKILL.md`。在 DSH 对话中直接�
 
 ## 维护
 
-同一规则变更应同时更新两套目录。预算标准更新到两侧 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到两侧 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`；会展/客户/场地热词更新到两侧 `himice-vibevoice/references/meeting-glossary.md`。更新上游工具前，先核对其版本和许可变化。
+同一规则变更应同时更新两套目录。预算标准更新到两侧 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到两侧 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`，并同步两侧 `assets/【模板】项目操作收支明细表.xlsx`；会展/客户/场地热词更新到两侧 `himice-vibevoice/references/meeting-glossary.md`。更新上游工具前，先核对其版本和许可变化。
