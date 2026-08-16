@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice OfficeCLI"
+  short_description: "用 OfficeCLI 安全编辑并校验 Himice Office 文件"
+  default_prompt: "Use $himice-officecli to update and validate this Himice Office file."

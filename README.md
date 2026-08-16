@@ -1,53 +1,37 @@
 # Awesome Himice SOP Skill
 
-Himice 活动项目预算表 SOP，供项目同事将客户报价转为规范的项目预算表，并完成代付、操作费用、成本与公式核对。
+Himice 内部 SOP 技能合集。每个一级目录都是一套可独立部署的 Codex Skill；请按项目需要安装其中一套或多套。
 
-## 包含内容
+## 技能目录
 
-```text
-.
-├── README.md                         # 同事使用说明
-├── SKILL.md                          # AI 执行规则
-├── agents/openai.yaml                # Codex 显示与调用配置
-├── assets/【项目预算表】鱼鹰号+活动名称.xlsx  # 空白预算表模板
-└── references/budget-rules.md        # 公司预算与费用标准
+| 目录 | 用途 | 上游来源 |
+| --- | --- | --- |
+| `Himice-budget-process` | 将客户报价、供应商成本和预算模板制作成项目预算表；包含已确认的代付、操作费用、表头和公式核验规则。 | Himice 内部 SOP |
+| `Himice-OfficeCLI` | 使用 OfficeCLI 处理项目预算、报价、方案、复盘等 Office 文件，并在修改后校验与渲染。 | [iOfficeAI/OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) |
+| `Himice-vibevoice` | 将已获授权的会议、展览和活动录音转写为带说话人和时间戳的文本，并输出纪要、行动项和待确认项。 | [microsoft/VibeVoice](https://github.com/microsoft/VibeVoice)（使用其中 ASR 能力） |
+
+## 部署
+
+先克隆私有仓库；公司同事需先获得仓库访问权限。
+
+```bash
+git clone https://github.com/Jaywang1013/Awesome-Himice-SOP-skill.git
+cd Awesome-Himice-SOP-skill
+
+# 按需复制一个或多个 Skill 到 Codex Skills 目录
+cp -R Himice-budget-process ~/.codex/skills/himice-budget-process
+cp -R Himice-OfficeCLI ~/.codex/skills/himice-officecli
+cp -R Himice-vibevoice ~/.codex/skills/himice-vibevoice
 ```
 
-## 使用前准备
+复制完成后重新打开 Codex；调用示例：`$himice-budget-process`、`$himice-officecli`、`$himice-vibevoice`。
 
-1. 克隆本仓库，或将整个仓库目录安装/复制到所用 AI 工具的 Skills 目录；仓库根目录已是完整 Skill 包。
-2. 安装 [OfficeCLI](https://github.com/iOfficeAI/OfficeCLI)，用于读取、修改、插入行、校验公式与渲染 `.xlsx`。
-3. 准备客户报价、供应商成本（如有）和项目预算模板。
+## 上游依赖与边界
 
-## 使用方式
+- `Himice-OfficeCLI` 是公司工作流封装，不含 OfficeCLI 的源代码；安装和更新请遵循 [OfficeCLI 原仓库](https://github.com/iOfficeAI/OfficeCLI)。
+- `Himice-vibevoice` 是会议转录工作流与术语词表，不含 VibeVoice 源代码或模型权重；部署 ASR 前请遵循 [VibeVoice 原仓库](https://github.com/microsoft/VibeVoice) 的安装说明与 MIT 许可证。它的 ASR 支持长音频、说话人、时间戳和自定义热词。
+- 预算模板及内部费用规则仅供已获授权的同事使用。不要把客户报价、录音、人员信息或未公开项目材料上传到无授权的外部服务。
 
-在 AI 工具中调用：
+## 维护
 
-```text
-Use $awesome-himice-sop-skill to create a project budget from this client quotation.
-```
-
-开始制作预算表时，必须提供以下信息：
-
-- 会议名称
-- 会议人数
-- 执行时间（开始、结束）
-- 公司参与人数
-- 会议负责人
-- 会议报账人
-
-缺少以上信息时，Skill 会先索取缺项，避免虚构表头或人员费用。
-
-## 已固化的规则
-
-- 同一连续板块自动合并第一列。
-- 客户报价明确标注代付的会场、住宿、餐饮、机票、动车写入代付五项；茶歇不进入代付服务费基数。
-- 客户明确的代付费率优先；没有明确费率时使用公司默认 6%。
-- 黄色仅用于需提取现金物料的预计成本单项总价。
-- 预计成本优先使用供应商成本；没有供应商成本时才临时镜像收入，并标为待采购核价。
-- 餐饮 ¥70/人/天；交通 ¥1,000/人、次数 2；住宿 ¥300/间/晚、两人一间；正式员工人补 ¥120/人/天；试用期/实习生 ¥70/人/天；M 级无补助。
-- 所有金额保留模板的人民币两位小数格式；交付前检查公式错误、代付重复、合计与税费范围。
-
-## 协作与保密
-
-本仓库包含公司 SOP 与模板，当前为私有仓库。请仅邀请已获授权的公司同事，并在更新费用标准后同步更新 `references/budget-rules.md`。
+费用标准或预算模板变更时，更新 `Himice-budget-process/references/budget-rules.md`；新增的会展术语、客户名或地点别名更新 `Himice-vibevoice/references/meeting-glossary.md`。上游工具升级时，先阅读其变更与许可证，再更新对应的来源说明。

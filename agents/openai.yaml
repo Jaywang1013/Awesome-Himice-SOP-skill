@@ -1,4 +1,0 @@
-interface:
-  display_name: "Himice 活动预算 SOP"
-  short_description: "按公司规则生成、校验并更新活动项目预算表"
-  default_prompt: "Use $awesome-himice-sop-skill to create a Himice project budget from a client quotation."

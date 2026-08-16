@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice VibeVoice"
+  short_description: "转写 Himice 会议展览录音并生成纪要、行动项与待确认清单"
+  default_prompt: "Use $himice-vibevoice to transcribe this authorized Himice meeting recording."

@@ -1,9 +1,9 @@
 ---
-name: awesome-himice-sop-skill
+name: himice-budget-process
 description: 按 Himice 公司 SOP 将客户活动报价制作成项目预算表。用于收集会议表头信息、映射报价与供应商成本、自动合并板块、处理代付和现金提取、保留模板格式并校验预算金额。
 ---
 
-# Himice 活动项目预算 SOP
+# Himice Budget Process
 
 使用 `assets/【项目预算表】鱼鹰号+活动名称.xlsx` 作为空白模板；客户或项目提供的较新模板优先。详细规则见 [预算规则](references/budget-rules.md)。
 

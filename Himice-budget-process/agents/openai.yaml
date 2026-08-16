@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice Budget Process"
+  short_description: "按 Himice 项目规则制作、核验并更新活动预算表"
+  default_prompt: "Use $himice-budget-process to create a Himice project budget from a client quotation."
