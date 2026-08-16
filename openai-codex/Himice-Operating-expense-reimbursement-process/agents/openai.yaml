@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice 操作费用报销流程"
+  short_description: "把活动票据录入结算明细并核对付款路径、合计和缺凭证"
+  default_prompt: "Use $himice-operating-expense-reimbursement-process to enter these activity invoices into the settlement detail."

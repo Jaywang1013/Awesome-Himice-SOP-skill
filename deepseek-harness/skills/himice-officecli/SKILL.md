@@ -17,4 +17,4 @@ user-invocable: true
 
 只在已授权范围内处理内部或客户资料，不把文件、客户信息或录音发送给未授权服务。
 
-整理实际操作费用报销和预算差异时先使用 `himice-operation-expense-reimbursement`；需要把已确认明细写入公司模板时，再使用本 Skill。
+整理实际操作费用报销和预算差异时先使用 `himice-operating-expense-reimbursement-process`；需要把已确认明细写入公司模板时，再使用本 Skill。
