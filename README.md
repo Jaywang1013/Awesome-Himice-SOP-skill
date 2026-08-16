@@ -81,6 +81,17 @@ claude
 
 在 Claude Code 中显式调用 `/himice-budget-process`、`/himice-officecli`、`/himice-vibevoice`、`/himice-operating-expense-reimbursement-process` 或 `/himice-advance-fund-application-process`。本版本特意设为手动调用，避免在包含客户资料、发票、录音或税号的工作中被自动触发。若只希望项目内可用，可将某个 Skill 放到项目根目录的 `.claude/skills/`。
 
+## 配置备用金申请表的本地默认信息
+
+`himice-advance-fund-application-process` 每次调用前都会要求选择“使用默认信息 / 有修改 / 更改默认信息”。厦门公司项目二部的非个人默认项已写在三套版本各自的 `references/department-defaults.example.md`；每位同事部署后都应复制为 `department-defaults.local.md`，再仅在本机补全联系人和人员信息。例如 Codex：
+
+```bash
+cp ~/.codex/skills/himice-advance-fund-application-process/references/department-defaults.example.md \
+  ~/.codex/skills/himice-advance-fund-application-process/references/department-defaults.local.md
+```
+
+DSH 和 Claude Code 仅需将上例中的 `~/.codex/skills` 分别替换为 `~/.dsh/skills`、`~/.claude/skills`。`department-defaults.local.md` 已被 Git 忽略；它可包含联系人、员工姓名和比例，但禁止上传、提交或同步到云端。选择“更改默认信息”时，Skill 只更新这份本地文件，新部门（如项目一部、海口公司创意部）会成为后续确认时显示的默认部门。
+
 ## 上游来源与边界
 
 - DSH 版本遵循 [DeepSeek Harness 官方 Skill 目录规范](https://github.com/deepseek-ai/deepseek-harness)：原生目录为 `~/.dsh/skills/<skill>/SKILL.md`，仅支持一层 Skill 发现。DSH 当前处于开发者预览，后续可能有不兼容变更。
