@@ -1,6 +1,6 @@
 # Awesome Himice SOP Skill
 
-Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex 与 DeepSeek Harness（DSH）两套可独立部署的版本。两套目录均包含同样的五项能力，但遵循各自的发现与调用规范。
+Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（DSH）与 Claude Code 三套可独立部署的版本。三套目录均包含同样的五项能力，但遵循各自的发现与调用规范。
 
 ## 目录
 
@@ -12,7 +12,14 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex 与 DeepSeek Harness�
 │   ├── Himice-vibevoice/
 │   ├── Himice-Operating-expense-reimbursement-process/
 │   └── Himice-advance-fund-application-process/
-└── deepseek-harness/                      # 原生 DSH Skill 版本
+├── deepseek-harness/                      # 原生 DSH Skill 版本
+│   └── skills/
+│       ├── himice-budget-process/
+│       ├── himice-officecli/
+│       ├── himice-vibevoice/
+│       ├── himice-operating-expense-reimbursement-process/
+│       └── himice-advance-fund-application-process/
+└── claude-code/                            # Claude Code 专用 Skill 版本
     └── skills/
         ├── himice-budget-process/
         ├── himice-officecli/
@@ -59,9 +66,25 @@ npx @deepseek-ai/dsh web
 
 DSH 会自动发现 `~/.dsh/skills/<skill>/SKILL.md`。在 DSH 对话中直接写“使用 `himice-budget-process` 帮我把这份客户报价填进预算模板”即可；若表头信息或附件缺失，Skill 会先请求缺项。
 
+## 安装 Claude Code 版本
+
+Claude Code 将个人 Skill 发现为 `~/.claude/skills/<skill>/SKILL.md`。克隆仓库后执行：
+
+```bash
+git clone https://github.com/Jaywang1013/Awesome-Himice-SOP-skill.git
+cd Awesome-Himice-SOP-skill
+
+mkdir -p ~/.claude/skills
+cp -R claude-code/skills/* ~/.claude/skills/
+claude
+```
+
+在 Claude Code 中显式调用 `/himice-budget-process`、`/himice-officecli`、`/himice-vibevoice`、`/himice-operating-expense-reimbursement-process` 或 `/himice-advance-fund-application-process`。本版本特意设为手动调用，避免在包含客户资料、发票、录音或税号的工作中被自动触发。若只希望项目内可用，可将某个 Skill 放到项目根目录的 `.claude/skills/`。
+
 ## 上游来源与边界
 
 - DSH 版本遵循 [DeepSeek Harness 官方 Skill 目录规范](https://github.com/deepseek-ai/deepseek-harness)：原生目录为 `~/.dsh/skills/<skill>/SKILL.md`，仅支持一层 Skill 发现。DSH 当前处于开发者预览，后续可能有不兼容变更。
+- Claude Code 版本遵循 [Claude Code Skills 官方规范](https://code.claude.com/docs/en/slash-commands)：个人目录为 `~/.claude/skills/<skill>/SKILL.md`，项目目录为 `.claude/skills/<skill>/SKILL.md`；Skill 中使用 `${CLAUDE_SKILL_DIR}` 定位内置模板与规则文件。
 - `himice-officecli` 基于 [iOfficeAI/OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) 的工作流，不包含其源码或二进制；请按上游说明单独安装。
 - `himice-vibevoice` 基于 [microsoft/VibeVoice](https://github.com/microsoft/VibeVoice) 的 ASR 能力，不包含其模型或源码；请遵循上游安装说明与 MIT 许可证。
 - 预算模板、客户报价、录音和人员信息仅供已获授权的公司同事处理。不要将未公开资料上传至未获授权的外部服务。
@@ -69,4 +92,4 @@ DSH 会自动发现 `~/.dsh/skills/<skill>/SKILL.md`。在 DSH 对话中直接�
 
 ## 维护
 
-同一规则变更应同时更新两套目录。预算标准更新到两侧 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到两侧 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`，并同步两侧 `assets/【模板】项目操作收支明细表.xlsx`；备用金申请规则更新到两侧 `himice-advance-fund-application-process/references/advance-fund-rules.md`，并同步两侧空白审批表模板；会展/客户/场地热词更新到两侧 `himice-vibevoice/references/meeting-glossary.md`。更新上游工具前，先核对其版本和许可变化。
+同一规则变更应同时更新三套目录。预算标准更新到各版本 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到各版本 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`，并同步各版本 `assets/【模板】项目操作收支明细表.xlsx`；备用金申请规则更新到各版本 `himice-advance-fund-application-process/references/advance-fund-rules.md`，并同步各版本空白审批表模板；会展/客户/场地热词更新到各版本 `himice-vibevoice/references/meeting-glossary.md`。更新上游工具前，先核对其版本和许可变化。
