@@ -9,12 +9,14 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex 与 DeepSeek Harness�
 ├── openai-codex/                         # 已有 Codex Skill 版本
 │   ├── Himice-budget-process/
 │   ├── Himice-OfficeCLI/
-│   └── Himice-vibevoice/
+│   ├── Himice-vibevoice/
+│   └── himice-operation-expense-reimbursement/
 └── deepseek-harness/                      # 原生 DSH Skill 版本
     └── skills/
         ├── himice-budget-process/
         ├── himice-officecli/
-        └── himice-vibevoice/
+        ├── himice-vibevoice/
+        └── himice-operation-expense-reimbursement/
 ```
 
 | 功能 | 内容 |
@@ -22,6 +24,7 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex 与 DeepSeek Harness�
 | `himice-budget-process` | 从客户报价、供应商成本与模板生成项目预算表，执行表头、代付、操作费用、现金项与公式核验。 |
 | `himice-officecli` | 使用 OfficeCLI 安全编辑、校验和渲染 Excel、Word、PowerPoint。 |
 | `himice-vibevoice` | 使用 VibeVoice-ASR 转写已获授权的会议/展览录音，结合会展和厦门术语生成纪要与行动项。 |
+| `himice-operation-expense-reimbursement` | 整理实际操作费用报销资料，核对预算差异、重复付款风险、缺凭证与待财务确认项。 |
 
 ## 安装 Codex 版本
 
@@ -32,9 +35,10 @@ cd Awesome-Himice-SOP-skill
 cp -R openai-codex/Himice-budget-process ~/.codex/skills/himice-budget-process
 cp -R openai-codex/Himice-OfficeCLI ~/.codex/skills/himice-officecli
 cp -R openai-codex/Himice-vibevoice ~/.codex/skills/himice-vibevoice
+cp -R openai-codex/himice-operation-expense-reimbursement ~/.codex/skills/himice-operation-expense-reimbursement
 ```
 
-重新打开 Codex 后可调用 `$himice-budget-process`、`$himice-officecli`、`$himice-vibevoice`。
+重新打开 Codex 后可调用 `$himice-budget-process`、`$himice-officecli`、`$himice-vibevoice`、`$himice-operation-expense-reimbursement`。
 
 ## 安装 DeepSeek Harness（DSH）版本
 
@@ -60,4 +64,4 @@ DSH 会自动发现 `~/.dsh/skills/<skill>/SKILL.md`。在 DSH 对话中直接�
 
 ## 维护
 
-同一规则变更应同时更新两套目录。预算标准更新到两侧 `himice-budget-process/references/budget-rules.md`；会展/客户/场地热词更新到两侧 `himice-vibevoice/references/meeting-glossary.md`。更新上游工具前，先核对其版本和许可变化。
+同一规则变更应同时更新两套目录。预算标准更新到两侧 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到两侧 `himice-operation-expense-reimbursement/references/operation-expense-rules.md`；会展/客户/场地热词更新到两侧 `himice-vibevoice/references/meeting-glossary.md`。更新上游工具前，先核对其版本和许可变化。

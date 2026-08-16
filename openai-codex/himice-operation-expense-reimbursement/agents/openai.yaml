@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice 操作费用报销"
+  short_description: "按操作费用标准整理报销资料、核对预算差异和待补资料"
+  default_prompt: "Use $himice-operation-expense-reimbursement to prepare this Himice operation expense reimbursement."

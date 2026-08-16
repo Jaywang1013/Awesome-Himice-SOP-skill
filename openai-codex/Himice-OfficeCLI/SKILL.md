@@ -25,3 +25,4 @@ description: 使用 OfficeCLI 创建、读取、修改、校验和渲染 Himice 
 
 - 制作活动预算表：调用 `$himice-budget-process`，并按该 Skill 的模板、代付和费用规则执行。
 - 转写会议音频并产出纪要：调用 `$himice-vibevoice`；需要将纪要写入 Office 文件时，再使用本 Skill。
+- 整理实际操作费用报销：调用 `$himice-operation-expense-reimbursement`；需要把已确认报销明细写入公司模板时，再使用本 Skill。
