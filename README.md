@@ -23,8 +23,8 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（
 │       ├── himice-vibevoice/
 │       ├── himice-operating-expense-reimbursement-process/
 │       ├── himice-advance-fund-application-process/
-│       ├── dsh-file-upload/               # 第六项目：文件识别（上游插件封装）
-│       └── dsh-vision-router/             # 第七项目：图片识别（上游插件封装）
+│       ├── dsh-file-upload/               # 文件识别
+│       └── dsh-vision-router/             # 图片识别
 ├── claude-code/                            # Claude Code 专用 Skill 版本
 │   └── skills/
 │       ├── himice-budget-process/
@@ -32,8 +32,8 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（
 │       ├── himice-vibevoice/
 │       ├── himice-operating-expense-reimbursement-process/
 │       └── himice-advance-fund-application-process/
-├── dsh-file-upload/                        # 第六项目：文件识别 Skill（注明上游原仓库）
-└── dsh-vision-router/                      # 第七项目：图片识别 Skill（注明上游原仓库）
+├── dsh-file-upload/                        # 文件识别 Skill
+└── dsh-vision-router/                      # 图片识别 Skill
 ```
 
 | 功能 | 内容 |
@@ -43,8 +43,8 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（
 | `himice-vibevoice` | 使用 VibeVoice-ASR 转写已获授权的会议/展览录音，结合会展和厦门术语生成纪要与行动项。 |
 | `himice-operating-expense-reimbursement-process` | 使用内置的单表《项目操作收支明细表》，将发票、行程单、支付截图与经手人自动录入；逐笔拆分滴滴/货拉拉行程、按路线写备注、勾选实际发票并核对付款路径与合计。 |
 | `himice-advance-fund-application-process` | 使用内置《预估协作人审批表》（内部亦称备用金申请表），从预算表生成预计营业额、毛利率、毛利润和活动信息，并本地填写客户名称、税号与报账人。 |
-| `dsh-file-upload`（第六项目） | 文件识别：上传并识别任意文件（PDF/Word/Excel/PPT/图片/压缩包等），内置 MarkItDown 文档转 Markdown，供模型用 `read_document` 读取。封装自 [HongMing-Huang/dsh-file-upload](https://github.com/HongMing-Huang/dsh-file-upload)。 |
-| `dsh-vision-router`（第七项目） | 图片识别：粘贴/上传图片即可看图问答、OCR、元素定位、像素对比、取色、抠图、SVG 矢量化。封装自 [ysr666/dsh-vision-router](https://github.com/ysr666/dsh-vision-router)。 |
+| `dsh-file-upload` | 文件识别：上传并识别任意文件（PDF/Word/Excel/PPT/图片/压缩包等），内置 MarkItDown 文档转 Markdown，供模型用 `read_document` 读取。封装自 [HongMing-Huang/dsh-file-upload](https://github.com/HongMing-Huang/dsh-file-upload)。 |
+| `dsh-vision-router` | 图片识别：粘贴/上传图片即可看图问答、OCR、元素定位、像素对比、取色、抠图、SVG 矢量化。封装自 [ysr666/dsh-vision-router](https://github.com/ysr666/dsh-vision-router)。 |
 
 ## 安装 Codex 版本
 
@@ -116,11 +116,11 @@ DSH 和 Claude Code 仅需将上例中的 `~/.codex/skills` 分别替换为 `~/.
 - Claude Code 版本遵循 [Claude Code Skills 官方规范](https://code.claude.com/docs/en/slash-commands)：个人目录为 `~/.claude/skills/<skill>/SKILL.md`，项目目录为 `.claude/skills/<skill>/SKILL.md`；Skill 中使用 `${CLAUDE_SKILL_DIR}` 定位内置模板与规则文件。
 - `himice-officecli` 基于 [iOfficeAI/OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) 的工作流，不包含其源码或二进制；请按上游说明单独安装。
 - `himice-vibevoice` 基于 [microsoft/VibeVoice](https://github.com/microsoft/VibeVoice) 的 ASR 能力，不包含其模型或源码；请遵循上游安装说明与 MIT 许可证。
-- 第六项目 `dsh-file-upload` 封装自 [HongMing-Huang/dsh-file-upload](https://github.com/HongMing-Huang/dsh-file-upload)（MIT，DSH 官方精选插件），不包含上游源码或二进制；插件本体用 `dsh plugin --profile web add dsh-file-upload` 安装。
-- 第七项目 `dsh-vision-router` 封装自 [ysr666/dsh-vision-router](https://github.com/ysr666/dsh-vision-router)（MIT，DSH 官方精选插件），不包含上游源码或二进制；插件本体用 `dsh plugin --profile web add dsh-vision-router` 安装。
+- `dsh-file-upload` 封装自 [HongMing-Huang/dsh-file-upload](https://github.com/HongMing-Huang/dsh-file-upload)（MIT，DSH 官方精选插件），不包含上游源码或二进制；插件本体用 `dsh plugin --profile web add dsh-file-upload` 安装。
+- `dsh-vision-router` 封装自 [ysr666/dsh-vision-router](https://github.com/ysr666/dsh-vision-router)（MIT，DSH 官方精选插件），不包含上游源码或二进制；插件本体用 `dsh plugin --profile web add dsh-vision-router` 安装。
 - 预算模板、客户报价、录音和人员信息仅供已获授权的公司同事处理。不要将未公开资料上传至未获授权的外部服务。
 - `himice-advance-fund-application-process` 中的客户名称、纳税人识别号、联系人和原始预算表只允许在本地处理；仓库仅保存空白模板和通用规则，禁止上传任何真实客户资料。
 
 ## 维护
 
-同一规则变更应同时更新三套目录。预算标准更新到各版本 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到各版本 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`，并同步各版本 `assets/【模板】项目操作收支明细表.xlsx`；备用金申请规则更新到各版本 `himice-advance-fund-application-process/references/advance-fund-rules.md`，并同步各版本空白审批表模板；会展/客户/场地热词更新到各版本 `himice-vibevoice/references/meeting-glossary.md`。OfficeCLI 安装引导与首次自检规则更新到各版本 `himice-officecli/SKILL.md`。第六、第七项目的封装说明更新到 `dsh-file-upload/SKILL.md` 与 `dsh-vision-router/SKILL.md`，并同步 `deepseek-harness/skills/` 对应目录。更新上游工具前，先核对其版本和许可变化。
+同一规则变更应同时更新三套目录。预算标准更新到各版本 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到各版本 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`，并同步各版本 `assets/【模板】项目操作收支明细表.xlsx`；备用金申请规则更新到各版本 `himice-advance-fund-application-process/references/advance-fund-rules.md`，并同步各版本空白审批表模板；会展/客户/场地热词更新到各版本 `himice-vibevoice/references/meeting-glossary.md`。OfficeCLI 安装引导与首次自检规则更新到各版本 `himice-officecli/SKILL.md`。`dsh-file-upload` 与 `dsh-vision-router` 的封装说明更新到各自的 SKILL.md，并同步 `deepseek-harness/skills/` 对应目录。更新上游工具前，先核对其版本和许可变化。
