@@ -1,2 +1,16 @@
 # Local default profiles may contain customer and employee personal information.
 **/department-defaults.local.md
+
+# DSH runtime artifacts & uploaded customer files — never commit.
+.dsh-uploads/
+.dsh-vision-router/
+
+# Customer-generated files at repo root only (templates under */assets/ stay tracked).
+/*.xlsx
+/*.xls
+/*.pdf
+/*.docx
+/*.pptx
+/*.png
+/*.jpg
+/*.jpeg

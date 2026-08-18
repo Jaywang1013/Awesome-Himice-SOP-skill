@@ -7,6 +7,30 @@ description: 使用 OfficeCLI 创建、读取、修改、校验和渲染 Himice 
 
 使用 [OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) 作为 Office 文件操作工具。本 Skill 是 Himice 的工作流封装，不复制 OfficeCLI 源代码、二进制或其依赖；安装、版本与许可证以 [上游仓库](https://github.com/iOfficeAI/OfficeCLI) 为准。
 
+## 首次使用：安装 OfficeCLI（一次性）
+
+克隆仓库后、第一次调用本 Skill 前，先按官方方式安装 OfficeCLI（任选其一）：
+
+```bash
+# macOS / Linux 一键安装
+curl -fsSL https://raw.githubusercontent.com/iOfficeAI/OfficeCLI/main/install.sh | bash
+
+# Windows (PowerShell)
+irm https://raw.githubusercontent.com/iOfficeAI/OfficeCLI/main/install.ps1 | iex
+
+# 或包管理器：brew install officecli（macOS/Linux）、scoop install officecli（Windows）、npm install -g @officecli/officecli（全平台）
+```
+
+若以上命令都不可用，直接运行 `officecli install`（显式自安装），或裸执行 `officecli`（首次调用也会触发自安装）。
+
+## 首次调用自检（必做）
+
+每次会话第一次调用本 Skill 时，必须先测试上游工具，**跑通后才能开始正式处理**：
+
+1. 运行 `officecli --version`，能输出版本号即视为安装成功、工具可用；
+2. 若提示命令不存在：提示用户按上方命令安装（或自动执行 `officecli install`），安装成功后重新运行 `officecli --version` 确认；
+3. 自检通过后，再查看文件结构并执行任务；**未通过自检不得继续处理文件，也不得声称工具可用**。
+
 ## 工作方式
 
 1. 先运行 `officecli --version`，确认上游工具可用；只加载当前文件类型所需的专项规则。

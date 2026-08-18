@@ -7,9 +7,35 @@ user-invocable: true
 
 # Himice OfficeCLI（DSH）
 
-使用 [OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) 处理 Office 文件。该上游工具必须由用户单独安装；本 Skill 仅提供 Himice 工作流，不包含其源码、二进制或依赖。详见 `references/source.md`。
+使用 [OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) 处理 Office 文件。本 Skill 仅提供 Himice 工作流，不包含上游工具的源码、二进制或依赖；安装、版本与许可证以[上游仓库](https://github.com/iOfficeAI/OfficeCLI)为准。详见 `references/source.md`。
 
-1. 先运行 `officecli --version`，确认工具可用；查看文件结构后再编辑。
+## 首次使用：安装 OfficeCLI（一次性）
+
+克隆仓库后、第一次调用本 Skill 前，先按官方方式安装 OfficeCLI（任选其一）：
+
+```bash
+# macOS / Linux 一键安装
+curl -fsSL https://raw.githubusercontent.com/iOfficeAI/OfficeCLI/main/install.sh | bash
+
+# Windows (PowerShell)
+irm https://raw.githubusercontent.com/iOfficeAI/OfficeCLI/main/install.ps1 | iex
+
+# 或包管理器：brew install officecli（macOS/Linux）、scoop install officecli（Windows）、npm install -g @officecli/officecli（全平台）
+```
+
+若以上命令都不可用，直接运行 `officecli install`（显式自安装），或裸执行 `officecli`（首次调用也会触发自安装）。
+
+## 首次调用自检（必做）
+
+每次会话第一次调用本 Skill 时，必须先测试上游工具，**跑通后才能开始正式处理**：
+
+1. 运行 `officecli --version`，能输出版本号即视为安装成功、工具可用；
+2. 若提示命令不存在：提示用户按上方命令安装（或自动执行 `officecli install`），安装成功后重新运行 `officecli --version` 确认；
+3. 自检通过后，再查看文件结构并执行任务；**未通过自检不得继续处理文件，也不得声称工具可用**。
+
+## 执行流程
+
+1. 先查看文件结构，再编辑。
 2. 保留原文件的样式、公式、合并单元格、列宽、冻结窗格、批注和数字格式，除非用户要求改变。
 3. 需要增删 Excel 行列时，先查询对应帮助并克隆相邻格式、公式和校验规则；项目预算执行 `himice-budget-process` 的专门规则。
 4. 修改后运行校验并渲染/截图复核。重点检查公式错误、分页、表头、金额格式、合并关系与文字溢出。
