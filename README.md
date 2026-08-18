@@ -1,5 +1,9 @@
 # Awesome Himice SOP Skill
 
+<p align="center">
+  <img src="assets/himice-hero.png" alt="Awesome Himice SOP Skill" width="100%">
+</p>
+
 Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（DSH）与 Claude Code 三套可独立部署的版本。三套目录均包含同样的五项能力，但遵循各自的发现与调用规范。另附两个 DSH 通用能力项目（文件识别、图片识别），随 DeepSeek 版本一起部署。
 
 ## 目录
