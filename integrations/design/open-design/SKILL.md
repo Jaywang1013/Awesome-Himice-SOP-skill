@@ -7,7 +7,7 @@ user-invocable: true
 
 # OpenDesign（创意部设计工作台）
 
-封装上游 [nexu-io/open-design](https://github.com/nexu-io/open-design)（Apache-2.0，88539★，开源 Claude Design 替代品）。本地优先的原生桌面应用（macOS / Windows），可挂接 DeepSeek Harness（dsh）作为运行时；生成 **web · 桌面 · 移动原型、活动看板/artifacts、演示文稿、图片、视频、HyperFrames 动效**，沙箱 iframe 预览，HTML / PDF / PPTX / MP4 导出。本目录不包含上游源码或二进制。
+封装上游 [nexu-io/open-design](https://github.com/nexu-io/open-design)（Apache-2.0，开源 Claude Design 替代品）。本地优先的原生桌面应用（macOS / Windows），可挂接 DeepSeek Harness（dsh）作为运行时；生成 **web · 桌面 · 移动原型、活动看板/artifacts、演示文稿、图片、视频、HyperFrames 动效**，沙箱 iframe 预览，HTML / PDF / PPTX / MP4 导出。本目录不包含上游源码或二进制。
 
 ## 原仓库地址
 

@@ -7,7 +7,7 @@ user-invocable: true
 
 # pptfast（PPT 生成）
 
-封装上游 [liustack/pptfast](https://github.com/liustack/pptfast)（MIT，DSH 首个 deck 生成插件，6★）。把内容大纲转成**原生 DrawingML `.pptx`**——每一级标题、要点、图表都能在 PowerPoint 里继续编辑，不是"一张图片 PPT"。17 种内置主题，可抽取公司现有 PPT 的配色与字体做成自定义主题。本地渲染，无账号、无 API key。本目录不包含上游源码或二进制。
+封装上游 [liustack/pptfast](https://github.com/liustack/pptfast)（MIT，DSH deck 生成插件）。把内容大纲转成**原生 DrawingML `.pptx`**——每一级标题、要点、图表都能在 PowerPoint 里继续编辑，不是"一张图片 PPT"。17 种内置主题，可抽取公司现有 PPT 的配色与字体做成自定义主题。本地渲染，无账号、无 API key。本目录不包含上游源码或二进制。
 
 ## 原仓库地址
 

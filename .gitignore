@@ -1,5 +1,14 @@
 # Local default profiles may contain customer and employee personal information.
 **/department-defaults.local.md
+*.local.json
+*.local.yaml
+*.local.yml
+
+# Credentials and local runtime state.
+.env
+.env.*
+!.env.example
+.task-runs/
 
 # DSH runtime artifacts & uploaded customer files — never commit.
 .dsh-uploads/
