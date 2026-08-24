@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice Design And Proposals"
+  short_description: "使用 OpenDesign 或 Canva 制作活动视觉、原型与提案材料"
+  default_prompt: "使用 $himice-design-proposals 选择合适的设计路径并制作这份提案。"
