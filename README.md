@@ -4,7 +4,7 @@
   <img src="assets/himice-hero.png" alt="Awesome Himice SOP Skill" width="100%">
 </p>
 
-Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（DSH）与 Claude Code 三套可独立部署的版本。三套目录均包含同样的五项能力，但遵循各自的发现与调用规范。另附 DSH 通用能力项目（文件识别、图片识别、钉钉办公、创意设计、PPT 生成），随 DeepSeek 版本一起部署。
+Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（DSH）与 Claude Code 三套可独立部署的版本。三套目录均包含同样的五项能力，但遵循各自的发现与调用规范。另附 DSH 通用能力项目，以及覆盖办公文件、附件读取、在线办公、通知审批、设计提案和企业知识库的跨 Agent 企业办公能力项目。
 
 ## 目录
 
@@ -40,7 +40,9 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（
 ├── dsh-vision-router/                      # 图片识别 Skill
 ├── dingtalk-office/                        # 钉钉办公（dsh-dingtalk + dsh-notifier）
 ├── open-design/                            # 创意设计 Skill
-└── pptfast/                                # PPT 生成 Skill
+├── pptfast/                                # PPT 生成 Skill
+└── projects/
+    └── enterprise-productivity-stack/      # Codex / DSH / Claude Code 企业办公能力矩阵
 ```
 
 | 功能 | 内容 |
@@ -56,6 +58,18 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（
 | `dsh-notifier` | 钉钉办公·统一通知：27 渠道（钉钉/飞书/企业微信/Telegram 等），回合结束/等待确认/出错自动推送，手机可远程审批与遥控。封装自 [THEWOLFWALKER/dsh-notifier](https://github.com/THEWOLFWALKER/dsh-notifier)。 |
 | `open-design` | 创意设计：AI 生成活动主视觉/海报/H5 原型/提案 deck/视频分镜，HTML/PDF/PPTX/MP4 导出，支持品牌 DESIGN.md 设计系统。封装自 [nexu-io/open-design](https://github.com/nexu-io/open-design)。 |
 | `pptfast` | PPT 生成：从大纲/文档生成原生可编辑 PPTX，17 种主题，可抽取公司 PPT 品牌配色，本地渲染无 API key。封装自 [liustack/pptfast](https://github.com/liustack/pptfast)。 |
+| [`enterprise-productivity-stack`](projects/enterprise-productivity-stack/) | 独立子项目：为 Codex、DSH、Claude Code 分别提供办公文件、文件读取、在线办公、通知审批、设计提案、企业知识库六项 Skill。 |
+
+## 跨 Agent 企业办公能力项目
+
+详见 [`projects/enterprise-productivity-stack/`](projects/enterprise-productivity-stack/)。其中 [`anthropic-document-skills/`](projects/enterprise-productivity-stack/anthropic-document-skills/) 直接挂接 Anthropic 官方 `docx`、`pdf`、`pptx`、`xlsx` 仓库入口；不复制上游代码。
+
+```bash
+# 按平台任选一套部署
+cp -R projects/enterprise-productivity-stack/codex/skills/* ~/.codex/skills/
+cp -R projects/enterprise-productivity-stack/deepseek-harness/skills/* ~/.dsh/skills/
+cp -R projects/enterprise-productivity-stack/claude-code/skills/* ~/.claude/skills/
+```
 
 ## 安装 Codex 版本
 
@@ -132,6 +146,7 @@ DSH 和 Claude Code 仅需将上例中的 `~/.codex/skills` 分别替换为 `~/.
 
 - DSH 版本遵循 [DeepSeek Harness 官方 Skill 目录规范](https://github.com/deepseek-ai/deepseek-harness)：原生目录为 `~/.dsh/skills/<skill>/SKILL.md`，仅支持一层 Skill 发现。DSH 当前处于开发者预览，后续可能有不兼容变更。
 - Claude Code 版本遵循 [Claude Code Skills 官方规范](https://code.claude.com/docs/en/slash-commands)：个人目录为 `~/.claude/skills/<skill>/SKILL.md`，项目目录为 `.claude/skills/<skill>/SKILL.md`；Skill 中使用 `${CLAUDE_SKILL_DIR}` 定位内置模板与规则文件。
+- Anthropic 官方 [Agent Skills 仓库](https://github.com/anthropics/skills) 中的 `docx`、`pdf`、`pptx`、`xlsx` 为 source-available、并非开源；本仓库仅链接并编排其能力，使用时遵循各目录 `LICENSE.txt`。
 - `himice-officecli` 基于 [iOfficeAI/OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) 的工作流，不包含其源码或二进制；请按上游说明单独安装。
 - `himice-vibevoice` 基于 [microsoft/VibeVoice](https://github.com/microsoft/VibeVoice) 的 ASR 能力，不包含其模型或源码；请遵循上游安装说明与 MIT 许可证。
 - `dsh-file-upload` 封装自 [HongMing-Huang/dsh-file-upload](https://github.com/HongMing-Huang/dsh-file-upload)（MIT，DSH 官方精选插件），不包含上游源码或二进制；插件本体用 `dsh plugin --profile web add dsh-file-upload` 安装。
@@ -145,4 +160,4 @@ DSH 和 Claude Code 仅需将上例中的 `~/.codex/skills` 分别替换为 `~/.
 
 ## 维护
 
-同一规则变更应同时更新三套目录。预算标准更新到各版本 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到各版本 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`，并同步各版本 `assets/【模板】项目操作收支明细表.xlsx`；备用金申请规则更新到各版本 `himice-advance-fund-application-process/references/advance-fund-rules.md`，并同步各版本空白审批表模板；会展/客户/场地热词更新到各版本 `himice-vibevoice/references/meeting-glossary.md`。OfficeCLI 安装引导与首次自检规则更新到各版本 `himice-officecli/SKILL.md`。各通用能力的封装说明更新到各自的 SKILL.md（`dsh-file-upload/`、`dsh-vision-router/`、`dingtalk-office/`、`open-design/`、`pptfast/`），并同步 `deepseek-harness/skills/` 对应目录。更新上游工具前，先核对其版本和许可变化。
+同一规则变更应同时更新三套目录。预算标准更新到各版本 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到各版本 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`，并同步各版本 `assets/【模板】项目操作收支明细表.xlsx`；备用金申请规则更新到各版本 `himice-advance-fund-application-process/references/advance-fund-rules.md`，并同步各版本空白审批表模板；会展/客户/场地热词更新到各版本 `himice-vibevoice/references/meeting-glossary.md`。OfficeCLI 安装引导与首次自检规则更新到各版本 `himice-officecli/SKILL.md`。各通用能力的封装说明更新到各自的 SKILL.md（`dsh-file-upload/`、`dsh-vision-router/`、`dingtalk-office/`、`open-design/`、`pptfast/`），并同步 `deepseek-harness/skills/` 对应目录。企业办公能力矩阵的规则变更需同步 `projects/enterprise-productivity-stack/` 下三套同名 Skill。更新上游工具前，先核对其版本和许可变化。

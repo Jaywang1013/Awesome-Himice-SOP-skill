@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice Online Office"
+  short_description: "通过 Google Workspace CLI 与 Connector 操作在线办公内容"
+  default_prompt: "使用 $himice-online-office 处理这个 Workspace 任务，并在写入后回读验证。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice Office Files"
+  short_description: "在 Codex 中创建、读取、编辑并校验 Excel、Word、PPT 和 PDF"
+  default_prompt: "使用 $himice-office-files 处理这份办公文件并完成格式与结果校验。"
