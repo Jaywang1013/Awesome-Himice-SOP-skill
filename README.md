@@ -4,7 +4,7 @@
   <img src="assets/himice-hero.png" alt="Awesome Himice SOP Skill" width="100%">
 </p>
 
-Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（DSH）与 Claude Code 三套可独立部署的版本。三套目录均包含同样的五项能力，但遵循各自的发现与调用规范。另附 DSH 通用能力项目，以及覆盖办公文件、附件读取、在线办公、通知审批、设计提案和企业知识库的跨 Agent 企业办公能力项目。
+Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（DSH）与 Claude Code 三套可独立部署的版本。三套目录均包含同样的五项能力，但遵循各自的发现与调用规范。另附 DSH 通用能力项目、跨 Agent 企业办公能力项目，以及不改变现有 Skill 设计逻辑的企业 Agent 平台 Blueprint。
 
 ## 目录
 
@@ -42,7 +42,8 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（
 ├── open-design/                            # 创意设计 Skill
 ├── pptfast/                                # PPT 生成 Skill
 └── projects/
-    └── enterprise-productivity-stack/      # Codex / DSH / Claude Code 企业办公能力矩阵
+    ├── enterprise-productivity-stack/      # Codex / DSH / Claude Code 企业办公能力矩阵
+    └── Himice-agent-platform-blueprint/    # 架构、选型、部署与 Skill 接口规范
 ```
 
 | 功能 | 内容 |
@@ -59,6 +60,13 @@ Himice 内部 SOP Skill 合集，同时提供 OpenAI Codex、DeepSeek Harness（
 | `open-design` | 创意设计：AI 生成活动主视觉/海报/H5 原型/提案 deck/视频分镜，HTML/PDF/PPTX/MP4 导出，支持品牌 DESIGN.md 设计系统。封装自 [nexu-io/open-design](https://github.com/nexu-io/open-design)。 |
 | `pptfast` | PPT 生成：从大纲/文档生成原生可编辑 PPTX，17 种主题，可抽取公司 PPT 品牌配色，本地渲染无 API key。封装自 [liustack/pptfast](https://github.com/liustack/pptfast)。 |
 | [`enterprise-productivity-stack`](projects/enterprise-productivity-stack/) | 独立子项目：为 Codex、DSH、Claude Code 分别提供办公文件、文件读取、在线办公、通知审批、设计提案、企业知识库六项 Skill。 |
+| [`Himice-agent-platform-blueprint`](projects/Himice-agent-platform-blueprint/) | 企业 Agent 参考项目：记录分层架构、框架选型、部署路线、钉钉/千问接入边界、安全治理及现有 Skills 的统一接口。 |
+
+## 企业 Agent 平台 Blueprint
+
+详见 [`projects/Himice-agent-platform-blueprint/`](projects/Himice-agent-platform-blueprint/)。Blueprint 不复制 Microsoft Agent Framework、OpenAI Agents SDK、Dify、RAGFlow 等上游源码，也不把 Himice SOP 绑定到单一模型；现有 Skills 继续作为业务规则唯一来源。
+
+钉钉接入优先参考官方 [DingTalk Workspace CLI](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli) 和企业机器人 Stream 模式。千问办公会员可降低同事使用门槛，但会员、百炼/API 调用和钉钉开放平台权限是三组独立授权，必须按公司合作合同和管理员控制台分别确认。
 
 ## 跨 Agent 企业办公能力项目
 
@@ -160,4 +168,4 @@ DSH 和 Claude Code 仅需将上例中的 `~/.codex/skills` 分别替换为 `~/.
 
 ## 维护
 
-同一规则变更应同时更新三套目录。预算标准更新到各版本 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到各版本 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`，并同步各版本 `assets/【模板】项目操作收支明细表.xlsx`；备用金申请规则更新到各版本 `himice-advance-fund-application-process/references/advance-fund-rules.md`，并同步各版本空白审批表模板；会展/客户/场地热词更新到各版本 `himice-vibevoice/references/meeting-glossary.md`。OfficeCLI 安装引导与首次自检规则更新到各版本 `himice-officecli/SKILL.md`。各通用能力的封装说明更新到各自的 SKILL.md（`dsh-file-upload/`、`dsh-vision-router/`、`dingtalk-office/`、`open-design/`、`pptfast/`），并同步 `deepseek-harness/skills/` 对应目录。企业办公能力矩阵的规则变更需同步 `projects/enterprise-productivity-stack/` 下三套同名 Skill。更新上游工具前，先核对其版本和许可变化。
+同一规则变更应同时更新三套目录。预算标准更新到各版本 `himice-budget-process/references/budget-rules.md`；操作费用报销标准更新到各版本 `himice-operating-expense-reimbursement-process/references/operation-expense-rules.md`，并同步各版本 `assets/【模板】项目操作收支明细表.xlsx`；备用金申请规则更新到各版本 `himice-advance-fund-application-process/references/advance-fund-rules.md`，并同步各版本空白审批表模板；会展/客户/场地热词更新到各版本 `himice-vibevoice/references/meeting-glossary.md`。OfficeCLI 安装引导与首次自检规则更新到各版本 `himice-officecli/SKILL.md`。各通用能力的封装说明更新到各自的 SKILL.md（`dsh-file-upload/`、`dsh-vision-router/`、`dingtalk-office/`、`open-design/`、`pptfast/`），并同步 `deepseek-harness/skills/` 对应目录。企业办公能力矩阵的规则变更需同步 `projects/enterprise-productivity-stack/` 下三套同名 Skill；平台边界、选型、部署或统一接口变化更新 `projects/Himice-agent-platform-blueprint/`。更新上游工具前，先核对其版本和许可变化。

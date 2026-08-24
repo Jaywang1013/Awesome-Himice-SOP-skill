@@ -1,0 +1,38 @@
+apiVersion: himice.ai/v1
+kind: Skill
+metadata:
+  id: himice-budget-process
+  version: 1.0.0
+  title: Himice 项目预算流程
+spec:
+  runtimes:
+    - codex
+    - dsh
+    - claude-code
+  inputs:
+    requiredFields:
+      - meeting_name
+      - attendee_count
+      - execution_time
+      - company_participant_count
+      - meeting_owner
+      - reimbursement_owner
+    attachments:
+      extensions: [.xlsx, .xls, .pdf, .png, .jpg, .jpeg]
+      maxTotalBytes: 52428800
+  privacy:
+    classification: confidential
+    localProcessingRequired: true
+    cloudTransferDefault: deny
+  effects:
+    localFileWrite: true
+    externalWrite: false
+    requiresApproval: false
+  output:
+    artifactTypes: [xlsx]
+    requirePreview: true
+    requireFormulaValidation: true
+  dingtalk:
+    allowed: true
+    returnMode: summary-first
+    uploadArtifactRequiresApproval: true
