@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository distributes Himice activity-operation Skills for Codex, DeepSeek Harness (DSH), and Claude Code. It is public, but it must never contain real client data, invoices, recordings, tax IDs, employee contact information, API keys, or OAuth credentials.
+This repository distributes Himice activity-operation Skills for Codex, DeepSeek Harness (DSH), and Claude Code. It is public, but it must never contain real client data, invoices, recordings, tax IDs, employee contact information, API keys, or OAuth credentials. The only data exception is a project-owner-approved public enterprise industry baseline, which must preserve sources, verification status, a checksum and a clear non-marketing usage boundary.
 
 ## Layout
 

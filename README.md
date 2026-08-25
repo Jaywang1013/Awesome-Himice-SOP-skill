@@ -6,7 +6,7 @@
 
 面向 Himice 同事的本地优先活动执行 Skill 库。它将项目预算、备用金申请、操作费用报销、会议转录和 Office 文件处理，分别适配到 OpenAI Codex、DeepSeek Harness（DSH）与 Claude Code。
 
-客户报价、发票、录音、税号、联系人和员工信息默认只在本地处理。仓库只保存空白模板、通用规则和上游工具说明。
+客户报价、发票、录音、税号、联系人和员工信息默认只在本地处理。仓库只保存空白模板、通用规则和上游工具说明；经项目负责人确认可公开使用的企业级 MICE 行业基线数据，单列在 `projects/mice-bid-enterprise-directory/`，并保留来源与核验口径。
 
 ## 快速开始
 
@@ -25,7 +25,7 @@ bash scripts/install.sh --platform claude-code --bundle core
 
 安装脚本不会覆盖已有本地 Skill；同事更新前请先备份或手动移除旧目录。重新启动所用 Agent 后，即可调用对应的 `himice-*` Skill。
 
-若还需 Excel/Word/PPT/PDF、文件读取、在线办公、通知审批、设计提案和企业知识库能力：
+若还需 Excel/Word/PPT/PDF、文件读取、在线办公、通知审批、设计提案、企业知识库和 MICE 招投标企业库能力：
 
 ```bash
 bash scripts/install.sh --platform codex --bundle general
@@ -34,7 +34,7 @@ bash scripts/install.sh --platform codex --bundle general
 
 ## Skill 总目录
 
-下表列出仓库全部 17 个独立 Skill。Codex、DSH、Claude Code 中的同名目录是同一 Skill 的运行时适配副本，不重复计数。
+下表列出仓库全部 18 个独立 Skill。Codex、DSH、Claude Code 中的同名目录是同一 Skill 的运行时适配副本，不重复计数。
 
 ### 核心 SOP Skills
 
@@ -60,6 +60,7 @@ bash scripts/install.sh --platform codex --bundle general
 | `himice-notification-approval` | Codex / DSH / Claude Code | 发送通知、请求人工确认、记录审批状态，并对接可用的 Connector、MCP 或通知插件。 | 不自行假设连接器已授权；外部消息与审批必须先确认。 |
 | `himice-design-proposals` | Codex / DSH / Claude Code | 制作活动主视觉、提案、原型、演示和多格式设计交付物。 | 使用 OpenDesign、Canva 或已安装设计 Skills；先确认品牌资产和导出格式。 |
 | `himice-enterprise-knowledge` | Codex / DSH / Claude Code | 检索、汇总和维护 Notion、Google Drive、SharePoint 等企业知识源，输出可追溯结论。 | 只使用已授权知识源，继承原系统权限。 |
+| `himice-mice-bid-directory` | Codex / DSH / Claude Code | 从本地全国会展产业链企业/机构主表筛选招投标候选池，保留来源、可信度、核验状态和待办。 | 不替代采购准入或资格审查；公开联系方式仅用于获授权的核验/业务联系。 |
 
 ### 通用集成 Skills（DSH）
 
@@ -91,7 +92,8 @@ bash scripts/install.sh --platform codex --bundle general
 │   └── presentations/
 ├── projects/                         # 可选能力项目，不影响核心 SOP
 │   ├── enterprise-productivity-stack/
-│   └── himice-agent-platform-blueprint/
+│   ├── himice-agent-platform-blueprint/
+│   └── mice-bid-enterprise-directory/ # 招投标 MICE 行业上下游企业一览（仍在补充）
 ├── scripts/                          # 安装与校验脚本
 ├── docs/                             # 维护与公开仓库安全规范
 ├── AGENTS.md                         # 给维护者与编码 Agent 的仓库约定
@@ -109,6 +111,8 @@ bash scripts/install.sh --platform codex --bundle general
 | Claude Code | `skills/claude-code/skills/` | `~/.claude/skills/` | `/himice-budget-process` 等 |
 
 企业办公能力矩阵位于 [`projects/enterprise-productivity-stack/`](projects/enterprise-productivity-stack/)，覆盖三平台的办公文件、附件读取、在线办公、通知审批、设计提案与企业知识库六类能力。
+
+招投标企业库位于 [`projects/mice-bid-enterprise-directory/`](projects/mice-bid-enterprise-directory/)。安装 `--bundle general` 时，`himice-mice-bid-directory` 和经确认可公开使用的企业/机构基线会一同安装到 `~/.himice/mice-bid-enterprise-directory/data/`；候选池仍须按招标文件和公开权威来源复核。
 
 ## DSH 上游插件
 
