@@ -34,7 +34,7 @@ bash scripts/install.sh --platform codex --bundle general
 
 ## Skill 总目录
 
-下表列出仓库全部 19 个独立 Skill。Codex、DSH、Claude Code 中的同名目录是同一 Skill 的运行时适配副本，不重复计数。
+下表列出仓库全部 20 个独立 Skill。Codex、DSH、Claude Code 中的同名目录是同一 Skill 的运行时适配副本，不重复计数。
 
 ### 核心 SOP Skills
 
@@ -75,6 +75,7 @@ bash scripts/install.sh --platform codex --bundle general
 | `dsh-notifier` | 在任务结束、等待确认或失败时，将通知推送到钉钉、飞书、企业微信等渠道。 | 单独安装插件并配置所需渠道凭据。 |
 | `open-design` | 生成活动视觉、网页/移动端原型、看板、演示、图片、视频与动效。 | 安装 OpenDesign 桌面应用；它不是 DSH 内置插件。 |
 | `pptfast` | 将大纲、笔记或文档生成原生可编辑 PPTX，并支持主题、校验、渲染与品牌提取。 | 单独安装 DSH 插件，按上游要求准备 Node 环境。 |
+| `himice-tender-simulation` | 招投标沙盘推演与方案分析：解析招标书 → 并行多智能体模拟各家竞标 → 评标打分对抗 → 迭代优化 → 输出最优投标方案、报价策略与风险清单。 | 无外部依赖，使用 DSH 会话模型与并行 subagent 推演；需用户提供招标书。 |
 
 每项上游来源、安装方式和许可证提示见 [integrations/](integrations/)。
 
