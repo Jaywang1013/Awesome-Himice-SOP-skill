@@ -34,7 +34,7 @@ bash scripts/install.sh --platform codex --bundle general
 
 ## Skill 总目录
 
-下表列出仓库全部 18 个独立 Skill。Codex、DSH、Claude Code 中的同名目录是同一 Skill 的运行时适配副本，不重复计数。
+下表列出仓库全部 19 个独立 Skill。Codex、DSH、Claude Code 中的同名目录是同一 Skill 的运行时适配副本，不重复计数。
 
 ### 核心 SOP Skills
 
@@ -70,6 +70,7 @@ bash scripts/install.sh --platform codex --bundle general
 | --- | --- | --- |
 | `dsh-file-upload` | 上传并识别 PDF、Office、图片、压缩包和文本；通过 MarkItDown 转为可读取内容。 | 单独安装同名 DSH 插件。 |
 | `dsh-vision-router` | 图片看图问答、OCR、元素定位、像素对比、取色、抠图与 SVG 矢量化。 | 单独安装同名 DSH 插件，并确认视觉模型配置。 |
+| `dsh-univer-office` | 对话内自然语言创建/编辑/预览/审查 Sheet 表格、Doc 文档、Slide 演示、Base 轻数据库、Board 画布；隔离草稿 + 批准/丢弃，导入导出 .xlsx/.docx/.pptx。 | 单独安装同名 DSH 插件（Node ≥ 22.19）；与 himice-officecli/pptfast 的分工见其 SKILL.md。 |
 | `dsh-dingtalk` | 向钉钉群发送 Markdown 或纯文本项目通知。 | 配置钉钉群机器人 Webhook 与安全签名。 |
 | `dsh-notifier` | 在任务结束、等待确认或失败时，将通知推送到钉钉、飞书、企业微信等渠道。 | 单独安装插件并配置所需渠道凭据。 |
 | `open-design` | 生成活动视觉、网页/移动端原型、看板、演示、图片、视频与动效。 | 安装 OpenDesign 桌面应用；它不是 DSH 内置插件。 |
