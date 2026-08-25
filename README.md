@@ -145,7 +145,6 @@ dsh plugin --profile web add pptfast
 ## 维护与安全
 
 - 维护规则见 [docs/maintaining-skills.md](docs/maintaining-skills.md)。
-- 在新对话或交接给新的开发 Agent 前，先阅读 [docs/project-handoff.md](docs/project-handoff.md)。
 - 公开仓库安全边界见 [docs/public-repository-safety.md](docs/public-repository-safety.md)。
 - 提交前运行：`bash scripts/validate.sh && git diff --check`。
 - 每次修改业务规则、内置模板或金额处理时，必须同步三套运行时版本，并使用脱敏样例进行核验。
