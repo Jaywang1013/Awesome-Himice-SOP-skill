@@ -28,21 +28,53 @@ bash scripts/install.sh --platform claude-code --bundle core
 若还需 Excel/Word/PPT/PDF、文件读取、在线办公、通知审批、设计提案和企业知识库能力：
 
 ```bash
-bash scripts/install.sh --platform codex --bundle productivity
+bash scripts/install.sh --platform codex --bundle general
 # 或 --bundle all 同时安装核心 SOP 与企业办公能力
 ```
 
-## 核心 SOP Skills
+## Skill 总目录
 
-| Skill | 场景 | 主要输出 |
+下表列出仓库全部 17 个独立 Skill。Codex、DSH、Claude Code 中的同名目录是同一 Skill 的运行时适配副本，不重复计数。
+
+### 核心 SOP Skills
+
+这些是 Himice 活动项目从前期到后期的核心业务流程，使用 `--bundle core` 安装。
+
+| Skill | 平台 | 负责什么 | 主要输出 |
 | --- | --- | --- |
-| `himice-budget-process` | 将客户报价和供应商成本填入预算模板 | 项目预算表、公式与金额核验 |
-| `himice-advance-fund-application-process` | 从预算表生成备用金申请 | 预估协作人审批表/备用金申请表 |
-| `himice-operating-expense-reimbursement-process` | 汇总发票、行程单、支付截图与经手人 | 项目操作收支明细表 |
-| `himice-vibevoice` | 转写已获授权的会展/会议录音 | 转写、纪要、行动项、待确认项 |
-| `himice-officecli` | 安全读取、修改、校验和渲染 Office 文件 | 保持格式与公式的 Office 文件 |
+| `himice-budget-process` | Codex / DSH / Claude Code | 根据客户报价和供应商成本制作预算表；填写会议信息，处理代付服务费、操作费用、现金项、板块合并和公式核验。 | 项目预算表、金额与公式核验结果。 |
+| `himice-advance-fund-application-process` | Codex / DSH / Claude Code | 从项目预算表生成预估协作人审批表（备用金申请表）；填写营业额、毛利、客户、税号和报账人，并在每次调用时确认部门默认信息。 | 备用金申请表；客户与税号仅本地处理。 |
+| `himice-operating-expense-reimbursement-process` | Codex / DSH / Claude Code | 将发票、滴滴/货拉拉行程单、支付截图和经手人录入单表；逐笔拆分行程、按路线写备注、勾选发票并核对金额。 | 项目操作收支明细表与票据核验结果。 |
+| `himice-vibevoice` | Codex / DSH / Claude Code | 转写已获授权的会议、展览和活动录音；结合 Himice、会展与厦门术语提炼纪要、行动项和待确认事项。 | 带时间信息的转写、会议纪要和行动清单。 |
+| `himice-officecli` | Codex / DSH / Claude Code | 使用 OfficeCLI 读取、修改、校验和渲染 Excel、Word、PowerPoint，重点保护公司模板格式、金额格式与公式。 | 经校验的 Office 文件和预览。 |
 
-DSH 的核心安装包还包括文件识别、图片识别、钉钉通知、设计工作台和 PPT 生成等上游插件包装；详见 [integrations/](integrations/)。
+### 通用办公 Skills
+
+这些是可与核心 SOP 搭配的通用能力，使用 `--bundle general` 安装。
+
+| Skill | 平台 | 负责什么 | 依赖或边界 |
+| --- | --- | --- | --- |
+| `himice-office-files` | Codex / DSH / Claude Code | 创建、读取、编辑和核验 Excel、Word、PowerPoint、PDF；为通用办公文件选择正确的官方 Skill 或 OfficeCLI。 | Codex 使用官方办公能力；DSH 使用 Univer/OfficeCLI；Claude 使用 Anthropic document-skills/OfficeCLI。 |
+| `himice-file-intake` | Codex / DSH / Claude Code | 读取、转换、批量整理 PDF、Office、图片、网页和常见附件，并保留来源。 | 使用官方附件能力或 MarkItDown；敏感原件遵循本地处理规则。 |
+| `himice-online-office` | Codex / DSH / Claude Code | 通过已授权的 Google Workspace CLI、MCP 或连接器操作 Drive、Docs、Sheets、Slides、Gmail 和 Calendar。 | 写入、共享、发送前必须确认目标与内容。 |
+| `himice-notification-approval` | Codex / DSH / Claude Code | 发送通知、请求人工确认、记录审批状态，并对接可用的 Connector、MCP 或通知插件。 | 不自行假设连接器已授权；外部消息与审批必须先确认。 |
+| `himice-design-proposals` | Codex / DSH / Claude Code | 制作活动主视觉、提案、原型、演示和多格式设计交付物。 | 使用 OpenDesign、Canva 或已安装设计 Skills；先确认品牌资产和导出格式。 |
+| `himice-enterprise-knowledge` | Codex / DSH / Claude Code | 检索、汇总和维护 Notion、Google Drive、SharePoint 等企业知识源，输出可追溯结论。 | 只使用已授权知识源，继承原系统权限。 |
+
+### 通用集成 Skills（DSH）
+
+这些是 DSH 专用的通用插件包装，使用 `--bundle general` 安装。Skill 说明会安装到本地；对应上游插件、桌面应用或凭据仍须单独配置。
+
+| Skill | 负责什么 | 额外要求 |
+| --- | --- | --- |
+| `dsh-file-upload` | 上传并识别 PDF、Office、图片、压缩包和文本；通过 MarkItDown 转为可读取内容。 | 单独安装同名 DSH 插件。 |
+| `dsh-vision-router` | 图片看图问答、OCR、元素定位、像素对比、取色、抠图与 SVG 矢量化。 | 单独安装同名 DSH 插件，并确认视觉模型配置。 |
+| `dsh-dingtalk` | 向钉钉群发送 Markdown 或纯文本项目通知。 | 配置钉钉群机器人 Webhook 与安全签名。 |
+| `dsh-notifier` | 在任务结束、等待确认或失败时，将通知推送到钉钉、飞书、企业微信等渠道。 | 单独安装插件并配置所需渠道凭据。 |
+| `open-design` | 生成活动视觉、网页/移动端原型、看板、演示、图片、视频与动效。 | 安装 OpenDesign 桌面应用；它不是 DSH 内置插件。 |
+| `pptfast` | 将大纲、笔记或文档生成原生可编辑 PPTX，并支持主题、校验、渲染与品牌提取。 | 单独安装 DSH 插件，按上游要求准备 Node 环境。 |
+
+每项上游来源、安装方式和许可证提示见 [integrations/](integrations/)。
 
 ## 仓库结构
 

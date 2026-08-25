@@ -18,4 +18,4 @@
 | DeepSeek Harness | `deepseek-harness/skills/` | `~/.dsh/skills/` |
 | Claude Code | `claude-code/skills/` | `~/.claude/skills/` |
 
-使用仓库根目录的 [`scripts/install.sh`](../scripts/install.sh) 安装。DSH 目录额外含上游工具包装，实际插件安装与凭据配置见 [`../integrations/`](../integrations/)。
+使用仓库根目录的 [`scripts/install.sh`](../scripts/install.sh) 安装：核心流程使用 `--bundle core`，通用办公与 DSH 上游工具包装使用 `--bundle general`。实际插件安装与凭据配置见 [`../integrations/`](../integrations/)。
