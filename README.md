@@ -8,6 +8,20 @@
 
 客户报价、发票、录音、税号、联系人和员工信息默认只在本地处理。仓库只保存空白模板、通用规则和上游工具说明；经项目负责人确认可公开使用的企业级 MICE 行业基线数据，单列在 `projects/mice-bid-enterprise-directory/`，并保留来源与核验口径。
 
+## 按部门浏览 Skill
+
+业务技能新增一层按覆盖范围组织的导航；运行时安装包仍保留原有 Codex、DSH、Claude Code 目录，不影响现有安装脚本。
+
+| 分类 | 判断标准 | 入口 |
+| --- | --- | --- |
+| 全部门通用 | 项目部/事业部、创意部、综合部、投资部均可直接调用 | [全部门通用 Skill](skills/all-department/README.md) |
+| 公司通用 | 覆盖两个及以上部门，或属于跨部门协作流程 | [公司通用 Skill](skills/company-common/README.md) |
+| 各部门适配 | 部门专属 Skill，加上该部门可用通用 Skill 的导航 | [部门 Skill 总览](skills/departments/README.md) |
+
+部门入口：[项目部/事业部](skills/departments/project-business/README.md) · [创意部](skills/departments/creative/README.md) · [综合部](skills/departments/general-affairs/README.md) · [投资部](skills/departments/investment/README.md)。跨部门 Skill 在分类目录中只保留一份，部门页通过链接展示，避免多份业务规则分叉。
+
+当前新增的 5 个分类版 Skill 属于 Codex 结构预览；原有三运行时安装包继续由 `scripts/install.sh` 管理。分类方案确认后，再逐项完成 DSH/Claude Code 适配并纳入安装清单。
+
 ## 快速开始
 
 ```bash
@@ -34,7 +48,7 @@ bash scripts/install.sh --platform codex --bundle general
 
 ## Skill 总目录
 
-下表列出仓库全部 20 个独立 Skill。Codex、DSH、Claude Code 中的同名目录是同一 Skill 的运行时适配副本，不重复计数。
+下表先列出仓库原有 20 个独立 Skill。Codex、DSH、Claude Code 中的同名目录是同一 Skill 的运行时适配副本，不重复计数；新增分类版 Skill 从上方部门入口进入。
 
 ### 核心 SOP Skills
 

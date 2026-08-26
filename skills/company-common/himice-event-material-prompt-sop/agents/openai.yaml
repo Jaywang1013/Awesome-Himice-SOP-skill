@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice 延展物料提示词"
+  short_description: "为活动主 KV 匹配物料样机并生成双图延展提示词"
+  default_prompt: "Use $himice-event-material-prompt-sop to select event mockups and create image-generation prompts from my activity main KV."

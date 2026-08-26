@@ -2,6 +2,14 @@
 
 这里是可直接部署的 Himice 核心活动执行 Skills。三套平台均有相同的五个业务 Skill；业务规则、空白模板和 reference 随各平台副本一起部署，避免同事因本地相对路径缺失而无法运行。
 
+## 业务分类视图
+
+- [全部门通用](all-department/README.md)：四个部门均可直接调用。
+- [公司通用](company-common/README.md)：覆盖两个及以上部门或公司级协作流程。
+- [各部门适配](departments/README.md)：展示部门专属 Skill 和该部门可调用的通用 Skill。
+
+分类目录负责业务发现；下方 runtime 目录负责实际部署。分类版 Skill 当前为 Codex 结构预览，不替代已有三平台安装包。
+
 | Skill ID | 业务阶段 | 内置资产 |
 | --- | --- | --- |
 | `himice-budget-process` | 活动前预算 | 项目预算表模板、预算规则 |

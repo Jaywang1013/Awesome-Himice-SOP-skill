@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice 整合营销技能包"
+  short_description: "为集团品牌、活动项目和创意内容输出可执行的整合营销成品"
+  default_prompt: "Use $himice-integrated-marketing-sop to develop a Himice group marketing strategy, campaign plan, content package, or performance review."

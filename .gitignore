@@ -23,3 +23,10 @@
 /*.png
 /*.jpg
 /*.jpeg
+
+# Generated project outputs and local inspection artifacts.
+outputs/
+*.inspect.ndjson
+
+# Local upstream clones used for adaptation and evaluation.
+.sources/
