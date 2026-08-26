@@ -15,3 +15,4 @@
 | [协作人业绩分配](../../company-common/himice-collaborator-allocation-sop/SKILL.md) | 项目预算发起与协作分配 | 公司通用 |
 | [整合营销](../../company-common/himice-integrated-marketing-sop/SKILL.md) | 对客方案、活动传播、内容与复盘 | 公司通用 |
 | [延展物料提示词](../../company-common/himice-event-material-prompt-sop/SKILL.md) | 提交物料需求、现场应用与验收 | 公司通用 |
+| [品牌商业片导演](../../company-common/himice-brand-commercial-director-sop/SKILL.md) | 客户 Brief、主张证据、范围与三阶段审批 | 公司通用 |

@@ -20,7 +20,9 @@
 
 部门入口：[项目部/事业部](skills/departments/project-business/README.md) · [创意部](skills/departments/creative/README.md) · [综合部](skills/departments/general-affairs/README.md) · [投资部](skills/departments/investment/README.md)。跨部门 Skill 在分类目录中只保留一份，部门页通过链接展示，避免多份业务规则分叉。
 
-当前新增的 5 个分类版 Skill 属于 Codex 结构预览；原有三运行时安装包继续由 `scripts/install.sh` 管理。分类方案确认后，再逐项完成 DSH/Claude Code 适配并纳入安装清单。
+当前新增的 6 个分类版 Skill 属于 Codex 结构预览；原有三运行时安装包继续由 `scripts/install.sh` 管理。分类方案确认后，再逐项完成 DSH/Claude Code 适配并纳入安装清单。
+
+其中 [Himice 品牌商业片导演](skills/company-common/himice-brand-commercial-director-sop/SKILL.md) 面向客户品牌宣传片、产品宣传片与社媒广告，把品牌事实锁、导演命题、生成/实拍/合成判断、镜头表、参考资产契约、Seedance 等模型的逐镜提示词、连续性、后期与验收组织为一条生产链。它由创意部主用，项目部/事业部负责客户 Brief、主张证据与三阶段审批；配图、脱敏测试、验收清单及四个上游项目的许可证署名均随技能包归档。
 
 ## 快速开始
 
