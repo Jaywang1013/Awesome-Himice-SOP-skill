@@ -267,11 +267,11 @@ flowchart LR
 
 | Skill | 平台 | 负责什么 | 主要输出 |
 | --- | --- | --- |
-| `himice-budget-process` | Codex / DSH / Claude Code | 根据客户报价和供应商成本制作预算表；填写会议信息，处理代付服务费、操作费用、现金项、板块合并和公式核验。 | 项目预算表、金额与公式核验结果。 |
-| `himice-advance-fund-application-process` | Codex / DSH / Claude Code | 从项目预算表生成预估协作人审批表（备用金申请表）；填写营业额、毛利、客户、税号和报账人，并在每次调用时确认部门默认信息。 | 备用金申请表；客户与税号仅本地处理。 |
-| `himice-operating-expense-reimbursement-process` | Codex / DSH / Claude Code | 将发票、滴滴/货拉拉行程单、支付截图和经手人录入单表；逐笔拆分行程、按路线写备注、勾选发票并核对金额。 | 项目操作收支明细表与票据核验结果。 |
-| `himice-vibevoice` | Codex / DSH / Claude Code | 转写已获授权的会议、展览和活动录音；结合 Himice、会展与厦门术语提炼纪要、行动项和待确认事项。 | 带时间信息的转写、会议纪要和行动清单。 |
-| `himice-officecli` | Codex / DSH / Claude Code | 使用 OfficeCLI 读取、修改、校验和渲染 Excel、Word、PowerPoint，重点保护公司模板格式、金额格式与公式。 | 经校验的 Office 文件和预览。 |
+| [`himice-budget-process`](skills/codex/himice-budget-process/SKILL.md) | Codex / DSH / Claude Code | 根据客户报价和供应商成本制作预算表；填写会议信息，处理代付服务费、操作费用、现金项、板块合并和公式核验。 | 项目预算表、金额与公式核验结果。 |
+| [`himice-advance-fund-application-process`](skills/codex/himice-advance-fund-application-process/SKILL.md) | Codex / DSH / Claude Code | 从项目预算表生成预估协作人审批表（备用金申请表）；填写营业额、毛利、客户、税号和报账人，并在每次调用时确认部门默认信息。 | 备用金申请表；客户与税号仅本地处理。 |
+| [`himice-operating-expense-reimbursement-process`](skills/codex/himice-operating-expense-reimbursement-process/SKILL.md) | Codex / DSH / Claude Code | 将发票、滴滴/货拉拉行程单、支付截图和经手人录入单表；逐笔拆分行程、按路线写备注、勾选发票并核对金额。 | 项目操作收支明细表与票据核验结果。 |
+| [`himice-vibevoice`](skills/codex/himice-vibevoice/SKILL.md) | Codex / DSH / Claude Code | 转写已获授权的会议、展览和活动录音；结合 Himice、会展与厦门术语提炼纪要、行动项和待确认事项。 | 带时间信息的转写、会议纪要和行动清单。 |
+| [`himice-officecli`](skills/codex/himice-officecli/SKILL.md) | Codex / DSH / Claude Code | 使用 OfficeCLI 读取、修改、校验和渲染 Excel、Word、PowerPoint，重点保护公司模板格式、金额格式与公式。 | 经校验的 Office 文件和预览。 |
 
 ### 通用办公 Skills
 
@@ -279,13 +279,13 @@ flowchart LR
 
 | Skill | 平台 | 负责什么 | 依赖或边界 |
 | --- | --- | --- | --- |
-| `himice-office-files` | Codex / DSH / Claude Code | 创建、读取、编辑和核验 Excel、Word、PowerPoint、PDF；为通用办公文件选择正确的官方 Skill 或 OfficeCLI。 | Codex 使用官方办公能力；DSH 使用 Univer/OfficeCLI；Claude 使用 Anthropic document-skills/OfficeCLI。 |
-| `himice-file-intake` | Codex / DSH / Claude Code | 读取、转换、批量整理 PDF、Office、图片、网页和常见附件，并保留来源。 | 使用官方附件能力或 MarkItDown；敏感原件遵循本地处理规则。 |
-| `himice-online-office` | Codex / DSH / Claude Code | 通过已授权的 Google Workspace CLI、MCP 或连接器操作 Drive、Docs、Sheets、Slides、Gmail 和 Calendar。 | 写入、共享、发送前必须确认目标与内容。 |
-| `himice-notification-approval` | Codex / DSH / Claude Code | 发送通知、请求人工确认、记录审批状态，并对接可用的 Connector、MCP 或通知插件。 | 不自行假设连接器已授权；外部消息与审批必须先确认。 |
-| `himice-design-proposals` | Codex / DSH / Claude Code | 制作活动主视觉、提案、原型、演示和多格式设计交付物。 | 使用 OpenDesign、Canva 或已安装设计 Skills；先确认品牌资产和导出格式。 |
-| `himice-enterprise-knowledge` | Codex / DSH / Claude Code | 检索、汇总和维护 Notion、Google Drive、SharePoint 等企业知识源，输出可追溯结论。 | 只使用已授权知识源，继承原系统权限。 |
-| `himice-mice-bid-directory` | Codex / DSH / Claude Code | 从本地全国会展产业链企业/机构主表筛选招投标候选池，保留来源、可信度、核验状态和待办。 | 不替代采购准入或资格审查；公开联系方式仅用于获授权的核验/业务联系。 |
+| [`himice-office-files`](projects/enterprise-productivity-stack/codex/skills/himice-office-files/SKILL.md) | Codex / DSH / Claude Code | 创建、读取、编辑和核验 Excel、Word、PowerPoint、PDF；为通用办公文件选择正确的官方 Skill 或 OfficeCLI。 | Codex 使用官方办公能力；DSH 使用 Univer/OfficeCLI；Claude 使用 Anthropic document-skills/OfficeCLI。 |
+| [`himice-file-intake`](projects/enterprise-productivity-stack/codex/skills/himice-file-intake/SKILL.md) | Codex / DSH / Claude Code | 读取、转换、批量整理 PDF、Office、图片、网页和常见附件，并保留来源。 | 使用官方附件能力或 MarkItDown；敏感原件遵循本地处理规则。 |
+| [`himice-online-office`](projects/enterprise-productivity-stack/codex/skills/himice-online-office/SKILL.md) | Codex / DSH / Claude Code | 通过已授权的 Google Workspace CLI、MCP 或连接器操作 Drive、Docs、Sheets、Slides、Gmail 和 Calendar。 | 写入、共享、发送前必须确认目标与内容。 |
+| [`himice-notification-approval`](projects/enterprise-productivity-stack/codex/skills/himice-notification-approval/SKILL.md) | Codex / DSH / Claude Code | 发送通知、请求人工确认、记录审批状态，并对接可用的 Connector、MCP 或通知插件。 | 不自行假设连接器已授权；外部消息与审批必须先确认。 |
+| [`himice-design-proposals`](projects/enterprise-productivity-stack/codex/skills/himice-design-proposals/SKILL.md) | Codex / DSH / Claude Code | 制作活动主视觉、提案、原型、演示和多格式设计交付物。 | 使用 OpenDesign、Canva 或已安装设计 Skills；先确认品牌资产和导出格式。 |
+| [`himice-enterprise-knowledge`](projects/enterprise-productivity-stack/codex/skills/himice-enterprise-knowledge/SKILL.md) | Codex / DSH / Claude Code | 检索、汇总和维护 Notion、Google Drive、SharePoint 等企业知识源，输出可追溯结论。 | 只使用已授权知识源，继承原系统权限。 |
+| [`himice-mice-bid-directory`](projects/mice-bid-enterprise-directory/codex/skills/himice-mice-bid-directory/SKILL.md) | Codex / DSH / Claude Code | 从本地全国会展产业链企业/机构主表筛选招投标候选池，保留来源、可信度、核验状态和待办。 | 不替代采购准入或资格审查；公开联系方式仅用于获授权的核验/业务联系。 |
 
 ### 通用集成 Skills（DSH）
 
@@ -293,14 +293,14 @@ flowchart LR
 
 | Skill | 负责什么 | 额外要求 |
 | --- | --- | --- |
-| `dsh-file-upload` | 上传并识别 PDF、Office、图片、压缩包和文本；通过 MarkItDown 转为可读取内容。 | 单独安装同名 DSH 插件。 |
-| `dsh-vision-router` | 图片看图问答、OCR、元素定位、像素对比、取色、抠图与 SVG 矢量化。 | 单独安装同名 DSH 插件，并确认视觉模型配置。 |
-| `dsh-univer-office` | 对话内自然语言创建/编辑/预览/审查 Sheet 表格、Doc 文档、Slide 演示、Base 轻数据库、Board 画布；隔离草稿 + 批准/丢弃，导入导出 .xlsx/.docx/.pptx。 | 单独安装同名 DSH 插件（Node ≥ 22.19）；与 himice-officecli/pptfast 的分工见其 SKILL.md。 |
-| `dsh-dingtalk` | 向钉钉群发送 Markdown 或纯文本项目通知。 | 配置钉钉群机器人 Webhook 与安全签名。 |
-| `dsh-notifier` | 在任务结束、等待确认或失败时，将通知推送到钉钉、飞书、企业微信等渠道。 | 单独安装插件并配置所需渠道凭据。 |
-| `open-design` | 生成活动视觉、网页/移动端原型、看板、演示、图片、视频与动效。 | 安装 OpenDesign 桌面应用；它不是 DSH 内置插件。 |
-| `pptfast` | 将大纲、笔记或文档生成原生可编辑 PPTX，并支持主题、校验、渲染与品牌提取。 | 单独安装 DSH 插件，按上游要求准备 Node 环境。 |
-| `himice-tender-simulation` | 招投标沙盘推演与方案分析：解析招标书 → 构建知识图谱与记忆库 → 生成竞标公司/评标专家人设 → 配置投标周期 → 并行多智能体多轮对抗推演 → 上帝视角注入变量 → 时序记忆回写 → 输出最优投标方案、报价策略与风险清单。机制复刻自群体智能推演（MiroFish 式），无外部依赖。 | 使用 DSH 会话模型与并行 subagent；需用户提供招标书。 |
+| [`dsh-file-upload`](skills/deepseek-harness/skills/dsh-file-upload/SKILL.md) | 上传并识别 PDF、Office、图片、压缩包和文本；通过 MarkItDown 转为可读取内容。 | 单独安装同名 DSH 插件。 |
+| [`dsh-vision-router`](skills/deepseek-harness/skills/dsh-vision-router/SKILL.md) | 图片看图问答、OCR、元素定位、像素对比、取色、抠图与 SVG 矢量化。 | 单独安装同名 DSH 插件，并确认视觉模型配置。 |
+| [`dsh-univer-office`](skills/deepseek-harness/skills/dsh-univer-office/SKILL.md) | 对话内自然语言创建/编辑/预览/审查 Sheet 表格、Doc 文档、Slide 演示、Base 轻数据库、Board 画布；隔离草稿 + 批准/丢弃，导入导出 .xlsx/.docx/.pptx。 | 单独安装同名 DSH 插件（Node ≥ 22.19）；与 himice-officecli/pptfast 的分工见其 SKILL.md。 |
+| [`dsh-dingtalk`](skills/deepseek-harness/skills/dsh-dingtalk/SKILL.md) | 向钉钉群发送 Markdown 或纯文本项目通知。 | 配置钉钉群机器人 Webhook 与安全签名。 |
+| [`dsh-notifier`](skills/deepseek-harness/skills/dsh-notifier/SKILL.md) | 在任务结束、等待确认或失败时，将通知推送到钉钉、飞书、企业微信等渠道。 | 单独安装插件并配置所需渠道凭据。 |
+| [`open-design`](skills/deepseek-harness/skills/open-design/SKILL.md) | 生成活动视觉、网页/移动端原型、看板、演示、图片、视频与动效。 | 安装 OpenDesign 桌面应用；它不是 DSH 内置插件。 |
+| [`pptfast`](skills/deepseek-harness/skills/pptfast/SKILL.md) | 将大纲、笔记或文档生成原生可编辑 PPTX，并支持主题、校验、渲染与品牌提取。 | 单独安装 DSH 插件，按上游要求准备 Node 环境。 |
+| [`himice-tender-simulation`](skills/deepseek-harness/skills/himice-tender-simulation/SKILL.md) | 招投标沙盘推演与方案分析：解析招标书 → 构建知识图谱与记忆库 → 生成竞标公司/评标专家人设 → 配置投标周期 → 并行多智能体多轮对抗推演 → 上帝视角注入变量 → 时序记忆回写 → 输出最优投标方案、报价策略与风险清单。机制复刻自群体智能推演（MiroFish 式），无外部依赖。 | 使用 DSH 会话模型与并行 subagent；需用户提供招标书。 |
 
 每项上游来源、安装方式和许可证提示见 [integrations/](integrations/)。
 
