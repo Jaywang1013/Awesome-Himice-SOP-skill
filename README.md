@@ -1,8 +1,10 @@
 # Awesome Himice SOP Skills
 
 <p align="center">
-  <img src="assets/himice-hero.png" alt="Himice — Awesome Himice SOP Skills" width="100%">
+  <img src="assets/himice-hero.gif" alt="Himice — 小鲸鱼跃入 O 圈并落位的动态首页图" width="100%">
 </p>
+
+<p align="center"><a href="assets/himice-hero.png">查看静态版首页图</a></p>
 
 <p align="center">
   <strong>把公司的真实工作方法，变成可复用、可校验、可持续迭代的 AI 工作技能。</strong>
