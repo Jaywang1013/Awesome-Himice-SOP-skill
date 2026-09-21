@@ -266,7 +266,7 @@ flowchart LR
 这些是 Himice 活动项目从前期到后期的核心业务流程，使用 `--bundle core` 安装。
 
 | Skill | 平台 | 负责什么 | 主要输出 |
-| --- | --- | --- |
+| --- | --- | --- | --- |
 | [`himice-budget-process`](skills/codex/himice-budget-process/SKILL.md) | Codex / DSH / Claude Code | 根据客户报价和供应商成本制作预算表；填写会议信息，处理代付服务费、操作费用、现金项、板块合并和公式核验。 | 项目预算表、金额与公式核验结果。 |
 | [`himice-advance-fund-application-process`](skills/codex/himice-advance-fund-application-process/SKILL.md) | Codex / DSH / Claude Code | 从项目预算表生成预估协作人审批表（备用金申请表）；填写营业额、毛利、客户、税号和报账人，并在每次调用时确认部门默认信息。 | 备用金申请表；客户与税号仅本地处理。 |
 | [`himice-operating-expense-reimbursement-process`](skills/codex/himice-operating-expense-reimbursement-process/SKILL.md) | Codex / DSH / Claude Code | 将发票、滴滴/货拉拉行程单、支付截图和经手人录入单表；逐笔拆分行程、按路线写备注、勾选发票并核对金额。 | 项目操作收支明细表与票据核验结果。 |
