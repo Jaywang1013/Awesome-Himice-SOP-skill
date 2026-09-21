@@ -9,6 +9,7 @@
 | [Himice 整合营销](himice-integrated-marketing-sop/SKILL.md) | 项目部/事业部、创意部主用；投资部材料支持 | 品牌定位、活动传播、内容创作、竞品研究和效果复盘。 |
 | [Himice 延展物料提示词](himice-event-material-prompt-sop/SKILL.md) | 创意部主用；项目部/事业部需求与落地 | 为活动主 KV 匹配样机并输出延展物料提示词。 |
 | [Himice 品牌商业片导演](himice-brand-commercial-director-sop/SKILL.md) | 创意部主用；项目部/事业部负责客户 Brief 与审批 | 为品牌片、产品片和社媒广告产出导演阐述、镜头表、逐镜提示词、后期与 QC。 |
+| [Himice 结算报价融入](himice-settlement-quote-integration-sop/SKILL.md) | 项目部/事业部主用；综合部协作 | 将实际新增、减少或调整金额融入既有中标报价，只调整数量、不改项目和单价。 |
 
 ## 何时选择哪个 Skill
 
@@ -21,6 +22,7 @@ flowchart TD
     E --> F{"创意生产"}
     F -->|品牌片 / 产品片| G["品牌商业片导演"]
     F -->|活动主 KV 延展| H["延展物料提示词"]
+    B -->|结算差额| I["结算报价融入"]
 ```
 
 | Skill | 必需输入 | 主要输出 | 不能代替 |

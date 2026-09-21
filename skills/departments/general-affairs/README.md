@@ -13,3 +13,4 @@
 | [操作费用报销](../../all-department/himice-expense-reimbursement-sop/SKILL.md) | 公司报销规则、核验与归档 | 全部门通用 |
 | [项目预算](../../company-common/himice-budget-sop/SKILL.md) | 预算流程协作与审批 | 公司通用 |
 | [协作人业绩分配](../../company-common/himice-collaborator-allocation-sop/SKILL.md) | 分配表流程协作与审批 | 公司通用 |
+| [结算报价融入](../../company-common/himice-settlement-quote-integration-sop/SKILL.md) | 结算资料核对与金额融入协作 | 公司通用 |

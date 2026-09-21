@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice 结算报价融入"
+  short_description: "把实际结算差额融入既有中标报价并保持项目与单价不变"
+  default_prompt: "Use $himice-settlement-quote-integration-sop to reconcile an actual event settlement into an awarded quotation by changing quantities only."

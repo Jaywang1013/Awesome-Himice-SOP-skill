@@ -85,6 +85,7 @@ flowchart TD
 | [`himice-integrated-marketing-sop`](skills/company-common/himice-integrated-marketing-sop/SKILL.md) | 公司通用 | 项目部/事业部、创意部；投资部材料支持 | 做品牌定位、活动传播、内容成稿、公开竞品研究或效果复盘 | 定位陈述、传播 Brief、内容、渠道排期、研究与复盘 |
 | [`himice-event-material-prompt-sop`](skills/company-common/himice-event-material-prompt-sop/SKILL.md) | 公司通用 | 创意部主用；项目部/事业部协作 | 已有活动主 KV，需要快速预览会务、导视、舞台、礼赠等延展物料 | 对应样机、适配策略、逐物料双图提示词、印前提醒 |
 | [`himice-brand-commercial-director-sop`](skills/company-common/himice-brand-commercial-director-sop/SKILL.md) | 公司通用 | 创意部主用；项目部/事业部负责 Brief 与审批 | 为客户制作品牌片、产品片、案例片或社媒广告 | 品牌事实锁、导演阐述、镜头表、逐镜提示词、后期与 QC |
+| [`himice-settlement-quote-integration-sop`](skills/company-common/himice-settlement-quote-integration-sop/SKILL.md) | 公司通用 | 项目部/事业部主用；综合部协作 | 活动结束后将实际结算差额融入中标报价 | 保持项目与单价不变的数量调整、金额勾稽与公式核验 |
 
 ## 业务 Skill 详细说明
 
@@ -220,6 +221,16 @@ flowchart LR
 ```
 
 该 Skill 以 [Emily2040/seedance-2.0](https://github.com/Emily2040/seedance-2.0) 为主逻辑，融合 DirectorSKILL 的产品工艺、Higgsfield 的整片控制和 Jacob Ye 的微表演/素材/声音/修复方法；具体提交、许可证和改写说明见[第三方来源](THIRD_PARTY_NOTICES.md)。
+
+### 7. 结算报价融入
+
+[`SKILL.md`](skills/company-common/himice-settlement-quote-integration-sop/SKILL.md) · [`结算报价融入规则`](skills/company-common/himice-settlement-quote-integration-sop/references/settlement-quote-integration-rules.md) · [`脱敏样例`](tests/fixtures/himice-settlement-quote-integration-sop.md) · [`验收清单`](tests/checklists/himice-settlement-quote-integration-sop.md)
+
+**解决的问题**：活动结束后，以中标报价为基底接收实际新增、减少或调整的结算资料；不新增或删除中标项目、不改动中标单价，只通过已有项目数量调整使报价总额与本次实际结算金额一致。
+
+| 输入 | 处理重点 | 输出 | 明确边界 |
+| --- | --- | --- | --- |
+| 中标报价文件、实际新增/减少/最终结算表和目标工作表 | 差额台账、同类项目映射、离散单位整数校验、面积项目小数承接、备注回指和公式核验 | 可追溯的报价副本、数量调整、融入备注、明细关联和核对结果 | 不替代票据归档、付款审批或财务审核；未知价格区间与无法映射的差额写“待确认”，不得虚构项目或金额 |
 
 ## 安装与快速开始
 
