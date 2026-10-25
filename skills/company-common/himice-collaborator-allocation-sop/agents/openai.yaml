@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice 协作人业绩分配 SOP"
+  short_description: "创建项目预算发起时使用的协作人预估业绩分配表"
+  default_prompt: "Use $himice-collaborator-allocation-sop to create or update a Himice estimated collaborator performance allocation sheet."

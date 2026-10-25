@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice 操作费用报销 SOP"
+  short_description: "整理票据、行程单和付款凭证，查重归档并更新项目实际成本"
+  default_prompt: "Use $himice-expense-reimbursement-sop to normalize invoices and trip statements, create a duplicate ledger and archive, then update a Himice reimbursement workbook."

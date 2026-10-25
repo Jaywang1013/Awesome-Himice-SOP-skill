@@ -1,0 +1,4 @@
+interface:
+  display_name: "Himice 预算表 SOP"
+  short_description: "从客户报价自动生成规范项目预算表并保留模板格式与公式"
+  default_prompt: "Use $himice-budget-sop to create a project budget from a client quotation and the Himice template."

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Himice 品牌商业片导演"
+  short_description: "品牌片与产品片的导演、分镜、提示词及交付 QC"
+  icon_large: "./assets/brand-commercial-director-cover.png"
+  brand_color: "#C99A4A"
+  default_prompt: "使用 $himice-brand-commercial-director-sop，把我提供的品牌或产品资料转成可执行的商业片导演方案、镜头表和逐镜生成提示词。"
