@@ -81,4 +81,8 @@ frontmatter 必须有 `name` / `description` / `whenToUse`（可选 `user-invoca
 3. 可移植性：无写死路径、无固定坐标、`*.local.md` 未进版本库
 4. `scripts/validate.sh --privacy` 通过（**必带 `--privacy`**：内容级隐私扫描是可选参数，普通 `validate.sh` 不扫内容、等于空跑；白名单 `scripts/privacy-allowlist.txt` 只给「说明性命中」，真实个人信息一律不得放行）
 
+> ⚠️ **验收前先确认待验包已 `git add` 入库**。`--privacy` 只扫 `git ls-files` 出来的文件，**未跟踪的文件扫不到**——那种情况下会得到假 PASS（假绿）。已在别处验证过的泄漏文件如果没入库，扫描器一样放行。
+>
+> 已批准公开基线的豁免走 `scripts/approved-baselines.txt`（路径 + SHA-256 双条件，校验和不符即 FAIL）；`skills/` 与 `integrations/` 永不豁免。隐私工具链自身（`privacy-scan.rb`、白名单、基线清单）不参与内容扫描。
+
 验收责任在 skills 管家；先交样板，验收通过后再按同一模板铺开其余流程。
