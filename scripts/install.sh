@@ -106,6 +106,11 @@ general_ids=(
   dsh-vision-router
   open-design
   pptfast
+  himice-dingtalk-cua-toolkit
+  himice-dingtalk-budget-approval
+  himice-dingtalk-loan-application
+  himice-dingtalk-payment-application
+  himice-dingtalk-seal-application
 )
 
 case "$bundle" in

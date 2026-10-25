@@ -7,6 +7,23 @@ cd "$repo_root"
 failed=0
 checked=0
 
+# —— 参数：--privacy 开启已跟踪文件的内容级隐私扫描（见 scripts/privacy-scan.rb）
+privacy=0
+for arg in "$@"; do
+  case "$arg" in
+    --privacy) privacy=1 ;;
+    *) ;;
+  esac
+done
+
+# —— 外部命令缺失必须显式 FAIL（计入退出码），绝不允许静默跳过某项检查。
+for cmd in git ruby find grep; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    printf 'FAIL  missing external command: %s\n' "$cmd" >&2
+    failed=1
+  fi
+done
+
 while IFS= read -r -d '' skill_file; do
   checked=$((checked + 1))
   if ! ruby - "$skill_file" <<'RUBY'
@@ -69,9 +86,39 @@ for skill_dir in skills/codex/*; do
   fi
 done
 
-if git ls-files | rg -q '(^|/)(\.env|.*\.local\.(json|ya?ml))$'; then
-  printf 'FAIL  local secret/config file is tracked.\n' >&2
+# rg 缺失时回退 grep（同事机器不必装 ripgrep）；两者都缺则显式 FAIL，不静默跳过。
+search_tool=""
+for t in rg grep; do
+  if command -v "$t" >/dev/null 2>&1; then
+    search_tool="$t"
+    break
+  fi
+done
+if [[ -z "$search_tool" ]]; then
+  printf 'FAIL  no regex search tool (rg or grep) available for config-leak check.\n' >&2
   failed=1
+else
+  if git ls-files | "$search_tool" -q -E '(^|/)(\.env|.*\.local\.(md|json|ya?ml))$'; then
+    printf 'FAIL  local secret/config file is tracked.\n' >&2
+    failed=1
+  fi
+fi
+
+# —— 内容级隐私扫描（--privacy）：只扫已跟踪文件，命中高置信模式且非白名单即 FAIL。
+if [[ "$privacy" -eq 1 ]]; then
+  tmp="$(mktemp)"
+  if ! git ls-files -z | ruby "$repo_root/scripts/privacy-scan.rb" "$repo_root" >"$tmp" 2>&1; then
+    printf 'FAIL  privacy scan found non-allowlisted matches:\n' >&2
+    sed 's/^/       /' "$tmp" >&2
+    failed=1
+  else
+    grep -q 'PRIVACY-OK' "$tmp" && : || { printf 'FAIL  privacy-scan.rb output unreadable\n' >&2; failed=1; }
+    # 豁免也要摆明面（可审计）：哪些文件按「已批准基线 + 校验和」被放行
+    if grep -q '^EXEMPT' "$tmp"; then
+      grep '^EXEMPT' "$tmp" | sed 's/^/       /' >&2
+    fi
+  fi
+  rm -f "$tmp"
 fi
 
 if [[ "$failed" -ne 0 ]]; then

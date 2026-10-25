@@ -1,0 +1,18 @@
+# approved-baselines.txt — 已批准公开基线豁免清单
+#
+# 每条豁免对应一个「项目负责人批准公开、且带来源与校验和」的行业数据基线。
+# 格式：<仓库内相对路径> <空格> <该文件 SHA-256 小写十六进制>
+#
+# 豁免是**有条件的**：privacy-scan.rb 只有在「路径在清单内」且「文件实际 SHA-256 与清单一致」
+# 时才放行该文件的隐私命中；校验和不符（= 基线被改动）或路径不在清单，一律 FAIL。
+#
+# 硬约束：
+# - `skills/` 与 `integrations/` 永不允许豁免——那是要分发到同事机器的面，PII 零容忍。
+# - 新增一条前，必须在对应 README 里写明：来源口径、核验状态、使用边界、版本校验和。
+#
+# 已批准基线：
+# - projects/mice-bid-enterprise-directory/data/全量企业名录_15050条.csv
+#   来源文档：projects/mice-bid-enterprise-directory/README.md（基线校验和 / 核验口径 / 使用边界 / 状态）
+#   使用边界：仅用于核验或获授权业务联系，不用于批量营销触达
+
+projects/mice-bid-enterprise-directory/data/全量企业名录_15050条.csv 6bb1385ee5667815872e2bffc15672bc2aa863591fd01e5e77baff2eb89db75e

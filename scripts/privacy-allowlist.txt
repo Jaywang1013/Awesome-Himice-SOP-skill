@@ -1,0 +1,6 @@
+# privacy-scan.rb 白名单
+# 每行一个放行项：`路径:行号`（精确放行某行）或一个精确片段（命中文本等于它则放行）。
+# 白名单外命中一律 exit 1。只在确有必要的说明性命中使用，勿图省事加宽。
+
+# 示例（教学性提到本机路径、并非真实泄漏）：
+skills/deepseek-harness/skills/himice-dingtalk-cua-toolkit/SKILL.md:32

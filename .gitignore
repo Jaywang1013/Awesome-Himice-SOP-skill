@@ -1,5 +1,6 @@
 # Local default profiles may contain customer and employee personal information.
 **/department-defaults.local.md
+*.local.md
 *.local.json
 *.local.yaml
 *.local.yml
