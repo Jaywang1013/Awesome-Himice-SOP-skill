@@ -35,6 +35,8 @@ for root in "${scan_roots[@]}"; do
   fi
 done
 
+# 注意：下面 `find … | sort -z` 的失败能被捕获，依赖第 2 行的 `set -o pipefail`。
+# 去掉 pipefail，管道会吞掉 find 的退出码，静默漏扫会以另一种形式回来。
 scan_list="$(mktemp)"
 if ! find "${scan_roots[@]}" -name SKILL.md -print0 2>/dev/null | sort -z >"$scan_list"; then
   printf 'FAIL  skill discovery failed: find exited non-zero\n' >&2
