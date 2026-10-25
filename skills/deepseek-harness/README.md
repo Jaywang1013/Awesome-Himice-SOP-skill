@@ -104,6 +104,7 @@ frontmatter 必须有 `name` / `description` / `whenToUse`（可选 `user-invoca
 | `git fetch` 成功 | 报成功 | 对象未必齐全——远端跟踪 ref 已存在时 git 不再向远端索要，合并报 `unable to read sha1 file`；先 `git update-ref -d refs/remotes/origin/main` 再 fetch |
 | 扫描「零命中」 | 报零 | 必须带工具口径：扫描器（带片段式白名单）与裸 grep 的「零」不是同一个零 |
 | 自称「以 origin/main 为准」 | 报的是远端真值 | `origin/main` 是**本地缓存**，只在 `git fetch` 后更新。不 fetch 就 `git rev-parse origin/main`，看到的是上次 fetch 的快照——断言「远端状态是 X」前必须先 `git fetch && git rev-parse origin/main` |
+| 已 `fetch` 过就信 `origin/main` | 刚 fetch 了，值一定对 | **fetch 也可能没生效**。「远端到底有什么」的权威值只在 `git ls-remote origin <ref>`——它直接问远端、不经过本地缓存。涉及「某提交推没推上去」这类判断，用 `git ls-remote`，不要用 `git rev-parse origin/main` |
 
 **另有一条实测过的编码坑（同属「工具自己那步成功」）**：`privacy-scan.rb` 用 `File.read(mode: 'rb')` 读入是 `ASCII-8BIT`，与白名单里含**中文文件名**的 UTF-8 键比较会抛 `Encoding::CompatibilityError`；修法是在读取处把每行 `force_encoding(Encoding::UTF_8)`。**该 bug 只在文件名含非 ASCII 时触发**，纯 ASCII 文件名（`skills/` 下多数文件）不漏网——所以 `skills/` 面全绿不代表安全，一旦有中文名文档进库（如 `docs/*教学.md`）就会崩。改扫描器后务必用一个**中文文件名**的假泄漏文件做反向验证。
 
