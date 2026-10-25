@@ -106,4 +106,6 @@ frontmatter 必须有 `name` / `description` / `whenToUse`（可选 `user-invoca
 
 **另有一条实测过的编码坑（同属「工具自己那步成功」）**：`privacy-scan.rb` 用 `File.read(mode: 'rb')` 读入是 `ASCII-8BIT`，与白名单里含**中文文件名**的 UTF-8 键比较会抛 `Encoding::CompatibilityError`；修法是在读取处把每行 `force_encoding(Encoding::UTF_8)`。**该 bug 只在文件名含非 ASCII 时触发**，纯 ASCII 文件名（`skills/` 下多数文件）不漏网——所以 `skills/` 面全绿不代表安全，一旦有中文名文档进库（如 `docs/*教学.md`）就会崩。改扫描器后务必用一个**中文文件名**的假泄漏文件做反向验证。
 
+**样本的「形态覆盖」也是覆盖的一部分**：上面那条 bug 漏网的根因不是没人测，而是**测试样本的文件名全是 ASCII**——同一段逻辑，换个文件名形态就从「通过」变「崩溃」。反向验证不要只用 `test.md` / `LEAKTEST.md` 这类英文名，至少各带一个**中文名**与一个**含空格或括号的路径**。零命中/全绿之前先问一句：样本形态够不够杂？
+
 验收责任在 skills 管家；先交样板，验收通过后再按同一模板铺开其余流程。
