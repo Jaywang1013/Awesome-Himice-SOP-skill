@@ -116,7 +116,7 @@ bash scripts/install.sh --platform dsh --bundle general
 
 **首次使用需建立本机默认值文件**
 
-各流程包在 `references/` 下提供空白模板 `field-mapping.example.md`，首次使用时复制为同目录的 `field-mapping.local.md`，按本机情况补全申请人、部门、默认公司、项目别名与固定抄送人等；`*.local.md` 已被仓库 `.gitignore` 覆盖，**只在本地保存、不进版本库**。个别流程的 example 模板仍在补齐中，缺失时以该包 `SKILL.md` 的前置条件说明为准。
+各流程包在 `references/` 下提供空白模板 `field-mapping.example.md`，首次使用时复制为同目录的 `field-mapping.local.md`，按本机情况补全申请人、部门、默认公司、项目别名与固定抄送人等；`*.local.md` 已被仓库 `.gitignore` 覆盖，**只在本地保存、不进版本库**。四个流程包均已提供该模板。
 
 ## 业务 Skill 详细说明
 
