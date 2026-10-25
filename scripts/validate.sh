@@ -24,6 +24,23 @@ for cmd in git ruby find grep; do
   fi
 done
 
+# —— 扫描根必须存在，且 find 的退出码不能被吞掉。
+# 反例：`done < <(find skills projects integrations ...)` 里进程替换丢弃 find 的退出码，
+# 目录缺失时 find 已经报错，但循环照常结束、脚本仍 exit 0 —— 扫描范围缩水却仍然 PASS。
+scan_roots=(skills projects integrations)
+for root in "${scan_roots[@]}"; do
+  if [[ ! -d "$root" ]]; then
+    printf 'FAIL  missing scan root: %s\n' "$root" >&2
+    failed=1
+  fi
+done
+
+scan_list="$(mktemp)"
+if ! find "${scan_roots[@]}" -name SKILL.md -print0 2>/dev/null | sort -z >"$scan_list"; then
+  printf 'FAIL  skill discovery failed: find exited non-zero\n' >&2
+  failed=1
+fi
+
 while IFS= read -r -d '' skill_file; do
   checked=$((checked + 1))
   if ! ruby - "$skill_file" <<'RUBY'
@@ -40,7 +57,8 @@ RUBY
     printf 'FAIL  %s\n' "$skill_file" >&2
     failed=1
   fi
-done < <(find skills projects integrations -name SKILL.md -print0 | sort -z)
+done <"$scan_list"
+rm -f "$scan_list"
 
 for platform_root in \
   skills/codex \
