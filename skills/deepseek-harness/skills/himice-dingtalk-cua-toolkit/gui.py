@@ -163,19 +163,59 @@ def focus():
     time.sleep(0.2)
 
 
+USAGE = """\
+用法: python3 gui.py <命令> [参数]
+
+  focus                 把钉钉提到前台（任何点击前都先跑这个）
+  cursor                打印鼠标当前位置，格式: (x, y)
+  click  <x> <y>        单击指定屏幕点
+  dclick <x> <y>        双击指定屏幕点
+  type   <文本>         以 Unicode 方式输入（中文、含小数点的金额走这个）
+  keys   <拼音串>       以 ASCII 逐键输入，配合 key 选字（如 keys "limeng"）
+  key    <键>           按单个键（如 key "1"、key "return"）
+
+坐标一律是「屏幕点」，不是像素；像素除以 config.env 的 SCREEN_SCALE 得到屏幕点。
+可用 ./look.sh 或 ./look2.sh 取到各字段的屏幕点坐标。
+"""
+
+
+def fail(msg):
+    print(f"ERROR: {msg}", file=sys.stderr)
+    sys.exit(2)
+
+
+def need(args, n, usage):
+    """参数不足时明确报错退出，不要抛 IndexError。"""
+    if len(args) < n:
+        fail(f"参数不足，需要 {n} 个，实际 {len(args)} 个。\n  用法: {usage}")
+
+
 if __name__ == '__main__':
-    cmd = sys.argv[1]
+    args = sys.argv[1:]
+    if not args or args[0] in ('-h', '--help', 'help'):
+        print(USAGE)
+        sys.exit(0 if args else 2)
+
+    cmd, rest = args[0], args[1:]
     if cmd == 'click':
-        click(float(sys.argv[2]), float(sys.argv[3]))
+        need(rest, 2, 'gui.py click <x> <y>')
+        click(float(rest[0]), float(rest[1]))
     elif cmd == 'dclick':
-        click(float(sys.argv[2]), float(sys.argv[3]), double=True)
+        need(rest, 2, 'gui.py dclick <x> <y>')
+        click(float(rest[0]), float(rest[1]), double=True)
     elif cmd == 'type':
-        type_text(sys.argv[2])
+        need(rest, 1, 'gui.py type <文本>')
+        type_text(rest[0])
     elif cmd == 'keys':
-        type_ascii(sys.argv[2])
+        need(rest, 1, 'gui.py keys <拼音串>')
+        type_ascii(rest[0])
     elif cmd == 'key':
-        key(sys.argv[2])
+        need(rest, 1, 'gui.py key <键>')
+        key(rest[0])
     elif cmd == 'focus':
         focus()
     elif cmd == 'cursor':
         print(cursor())
+    else:
+        # 未知命令必须非 0 退出：静默啥也不做会被上层当成"这步成功了"
+        fail(f"未知命令: {cmd}\n\n{USAGE}")
