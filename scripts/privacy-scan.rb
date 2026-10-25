@@ -43,6 +43,14 @@ end
 # 可分发面：永不豁免（即使被写进 approved-baselines.txt 也不认）
 NEVER_EXEMPT_PREFIXES = ['skills/', 'integrations/'].freeze
 
+# 规则自指文件：它们存在的意义就是「写出这些模式」或「登记豁免」，扫自己没有意义——
+# 否则每加一条规则都会把自己扫出来（套娃）。仅限隐私工具链自身，不含业务文档。
+SELF_REFERENCE_FILES = [
+  'scripts/privacy-scan.rb',
+  'scripts/privacy-allowlist.txt',
+  'scripts/approved-baselines.txt',
+].freeze
+
 PATTERNS = [
   %r{/Users/Zhuanz},      # 本机绝对路径
   %r{\b\d{16,19}\b},      # 银行账号（16–19 位）
@@ -67,6 +75,7 @@ mismatched = []
 
 paths.each do |f|
   next unless File.file?(f)
+  next if SELF_REFERENCE_FILES.include?(f) # 隐私工具链自身不参与内容扫描
   begin
     content = File.read(f, mode: 'rb')
   rescue StandardError

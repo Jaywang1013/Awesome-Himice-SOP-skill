@@ -4,3 +4,9 @@
 
 # 示例（教学性提到本机路径、并非真实泄漏）：
 skills/deepseek-harness/skills/himice-dingtalk-cua-toolkit/SKILL.md:32
+
+# 规则自指：验收规范里写明「仓库中不得出现 /Users/Zhuanz/...」，属禁止性条款原文
+skills/deepseek-harness/README.md:75
+
+# 说明：scripts/privacy-scan.rb、privacy-allowlist.txt、approved-baselines.txt 三个文件
+# 由扫描器的 SELF_REFERENCE_FILES 直接跳过（它们的作用就是写出这些模式），无需在此登记。
