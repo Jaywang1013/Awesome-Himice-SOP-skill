@@ -86,6 +86,38 @@ flowchart TD
 | [`himice-event-material-prompt-sop`](skills/company-common/himice-event-material-prompt-sop/SKILL.md) | 公司通用 | 创意部主用；项目部/事业部协作 | 已有活动主 KV，需要快速预览会务、导视、舞台、礼赠等延展物料 | 对应样机、适配策略、逐物料双图提示词、印前提醒 |
 | [`himice-brand-commercial-director-sop`](skills/company-common/himice-brand-commercial-director-sop/SKILL.md) | 公司通用 | 创意部主用；项目部/事业部负责 Brief 与审批 | 为客户制作品牌片、产品片、案例片或社媒广告 | 品牌事实锁、导演阐述、镜头表、逐镜提示词、后期与 QC |
 
+### 钉钉审批代填（四个流程）
+
+在钉钉 OA 审批里**自动代填**审批单：截屏识别字段 → 自动点击与输入 → **填到提交前为止**，字段清单交本人核对，**由本人点提交**（机器人不代提交、不代撤回）。
+
+| Skill | 覆盖的审批单 | 何时调用 |
+| --- | --- | --- |
+| [`himice-dingtalk-budget-approval`](skills/deepseek-harness/skills/himice-dingtalk-budget-approval/SKILL.md) | 项目预算审批单 | 项目预算表已就绪，需要在钉钉发起预算审批 |
+| [`himice-dingtalk-loan-application`](skills/deepseek-harness/skills/himice-dingtalk-loan-application/SKILL.md) | 项目借款单 | 需要申请项目备用金，借款金额取自预算表用款申请表的现金小计 |
+| [`himice-dingtalk-payment-application`](skills/deepseek-harness/skills/himice-dingtalk-payment-application/SKILL.md) | 项目类付款申请 | 合同、发票、结算单齐备，需要向供应商付款 |
+| [`himice-dingtalk-seal-application`](skills/deepseek-harness/skills/himice-dingtalk-seal-application/SKILL.md) | 用印申请 | 需要对客销售合同、投标文件或供应商采购合同用印 |
+| [`himice-dingtalk-cua-toolkit`](skills/deepseek-harness/skills/himice-dingtalk-cua-toolkit/SKILL.md) | 公共工具包 | 上述四个流程的共同依赖（截屏、文字识别、点击、输入），不单独使用 |
+
+安装（DeepSeek Harness 运行时）：
+
+```bash
+bash scripts/install.sh --platform dsh --bundle general
+```
+
+逐步操作与排障见 [钉钉流程 Skills 手把手教学](docs/钉钉流程-skills-手把手教学.md)。
+
+**前置条件（缺一不可）**
+
+1. macOS 桌面环境（依赖系统截屏与辅助功能接口；Windows 暂不支持）
+2. 钉钉桌面客户端已登录，窗口保持在前台
+3. 系统授权：**屏幕录制** 与 **辅助功能** 均允许 DeepSeek Harness（授权后客户端会重启）
+4. 屏幕保持常亮（锁屏后识别到的是锁屏画面）
+5. 代填期间不使用这台电脑（焦点被抢会导致点击失效）
+
+**首次使用需建立本机默认值文件**
+
+各流程包在 `references/` 下提供空白模板 `field-mapping.example.md`，首次使用时复制为同目录的 `field-mapping.local.md`，按本机情况补全申请人、部门、默认公司、项目别名与固定抄送人等；`*.local.md` 已被仓库 `.gitignore` 覆盖，**只在本地保存、不进版本库**。个别流程的 example 模板仍在补齐中，缺失时以该包 `SKILL.md` 的前置条件说明为准。
+
 ## 业务 Skill 详细说明
 
 ### 1. 操作费用报销
