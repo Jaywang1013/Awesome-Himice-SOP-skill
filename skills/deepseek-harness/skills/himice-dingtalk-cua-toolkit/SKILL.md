@@ -15,6 +15,13 @@ whenToUse: 需要对 macOS 钉钉客户端做 GUI 自动化（截图识别/点�
 - 本目录是工具包本体：`gui.py`、`look*.sh`、`ocr.swift`、`pdf2png.swift`、`install.sh`、`config.env(.example)`、`README.md`
 - 完整说明、前置权限、坐标体系、已知坑见 `README.md`
 
+## 单一来源文档（各流程 skill 引用这里，不重复写）
+
+- `references/common-pitfalls.md` —— **通用跨模板技术坑**（焦点/截图/输入方式/下拉与日期浮层/附件面板/草稿/滚动，按 A–G 分组：症状 → 原因 → 处置）
+- `references/control-types.md` —— **控件类型 → 操作手法**（只读 / 自由文本 / 拼音联想 / 下拉单选 / 日期浮层 / 附件 / 人员选择器）+ 各类型校验要点
+
+流程 skill 的 `references/pitfalls.md` 只写本流程专属坑，`references/field-mapping.md` 只写本流程取值规则；通用部分一律回指上述两文件。
+
 ## 使用流程（每台机器首次）
 
 1. 跑 `bash install.sh` —— 编译 `bin/ocr`、`bin/pdf2png`，`chmod`，生成 `config.env`

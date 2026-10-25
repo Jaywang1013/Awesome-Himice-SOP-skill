@@ -373,5 +373,24 @@ dsh plugin --profile web add pptfast
 
 - 维护规则见 [docs/maintaining-skills.md](docs/maintaining-skills.md)。
 - 公开仓库安全边界见 [docs/public-repository-safety.md](docs/public-repository-safety.md)。
-- 提交前运行：`bash scripts/validate.sh && git diff --check`。
 - 每次修改业务规则、内置模板或金额处理时，必须同步三套运行时版本，并使用脱敏样例进行核验。
+
+### 两套校验各管什么（只跑一个不算通过）
+
+仓库有**两套互不替代**的校验，判据不同，必须都跑：
+
+| 校验 | 管什么 |
+| --- | --- |
+| `bash scripts/validate.sh [--privacy]` | **隐私与结构底线**：所有 `SKILL.md` 的 `name`/`description` frontmatter；三个平台根（`skills/codex`、`skills/deepseek-harness/skills`、`skills/claude-code/skills`）与五个 core skill 齐全；`skills/codex/*/agents/openai.yaml` 合法；`.env`、`*.local.md/json/yaml/yml` 不得入库。带 `--privacy` 时额外做**内容级隐私扫描**（高置信模式：本机路径、16–19 位账号、18 位税号、手机号、鱼鹰号），已批准公开基线走 `scripts/approved-baselines.txt` 的「路径 + SHA-256」条件豁免。 |
+| `python3 scripts/validate_department_skills.py` | **部门分类契约**：只校验 `skills/all-department`、`skills/company-common`、`skills/departments/<approved>` 下的 `himice-*-sop` 包——frontmatter 仅允许 `name`/`description`、`name` 与目录名一致、必须有 `agents/openai.yaml`、本地链接必须存在、`tests/fixtures` 与 `tests/checklists` 齐全、分类索引 `README.md` 存在。 |
+
+提交前一并执行（含隐私扫描）：
+
+```bash
+bash scripts/validate.sh --privacy && python3 scripts/validate_department_skills.py && git diff --check
+```
+
+两点必须知道：
+
+1. **CI 只跑了 `bash scripts/validate.sh`（不带 `--privacy`）**，即流水线**不做内容级隐私扫描**，那一步是本地提交前的人工职责——所以上面这条命令里的 `--privacy` 不能省。
+2. `--privacy` 只扫 `git ls-files` 出来的文件，**未跟踪的文件扫不到**（会造成假 PASS）。验收或提交前先确认改动已 `git add`。

@@ -1,12 +1,14 @@
 # privacy-scan.rb 白名单
-# 每行一个放行项：`路径:行号`（精确放行某行）或一个精确片段（命中文本等于它则放行）。
-# 白名单外命中一律 exit 1。只在确有必要的说明性命中使用，勿图省事加宽。
+# 两类放行项：
+#   1) `路径:行号`     —— 精确放行某一行（行号漂移后失效，慎用）
+#   2) 行内特征片段  —— 命中行**包含**该片段才放行（推荐；必须写得足够特异）
+# 白名单外命中一律 exit 1。只给「说明性命中」，真实个人信息永远不放行。
 
-# 示例（教学性提到本机路径、并非真实泄漏）：
-skills/deepseek-harness/skills/himice-dingtalk-cua-toolkit/SKILL.md:32
+# 工具包 SKILL.md 的教学句：提醒不要写死本机路径
+不要在本工具包或任何流程 skill 里写死
 
-# 规则自指：验收规范里写明「仓库中不得出现 /Users/Zhuanz/...」，属禁止性条款原文
-skills/deepseek-harness/README.md:75
+# 验收规范里的禁止性条款原文：仓库中不得出现本机绝对路径
+仓库中不得出现
 
 # 说明：scripts/privacy-scan.rb、privacy-allowlist.txt、approved-baselines.txt 三个文件
-# 由扫描器的 SELF_REFERENCE_FILES 直接跳过（它们的作用就是写出这些模式），无需在此登记。
+# 由扫描器的 SELF_REFERENCE_FILES 直接跳过（作用就是写出这些模式），无需在此登记。

@@ -16,12 +16,20 @@ repo = ARGV.fetch(0)
 
 # ---- 白名单：只给「说明性命中」（文档里提到 /Users/Zhuanz 这类），不给真实 PII。
 allow_path = File.join(repo, 'scripts', 'privacy-allowlist.txt')
-allowed = Set.new
+# 白名单两类：
+#   1) `路径:行号`  —— 精确放行某一行（行号会漂移，慎用）
+#   2) 行内特征片段 —— 命中行**包含**该片段才放行（推荐，抗行号漂移；须足够特异）
+line_keys = Set.new
+frag_rules = []
 if File.exist?(allow_path)
   File.readlines(allow_path, encoding: 'UTF-8').each do |l|
     l = l.strip
     next if l.empty? || l.start_with?('#')
-    allowed << l
+    if l.match?(/\A.+:\d+\z/)
+      line_keys << l
+    else
+      frag_rules << l
+    end
   end
 end
 
@@ -86,11 +94,15 @@ paths.each do |f|
   # 先判断该文件是否有命中，避免对无命中文件做 SHA 计算
   file_hits = []
   line_no = 0
-  content.lines.each do |line|
+  content.lines.each do |raw|
     line_no += 1
+    # `mode: 'rb'` 读进来是 ASCII-8BIT；统一转 UTF-8，否则下面的 line_keys
+    # （UTF-8，键名含中文文件名）比较会抛 Encoding::CompatibilityError。
+    line = raw.dup.force_encoding(Encoding::UTF_8)
+    line = raw.dup.force_encoding(Encoding::BINARY) unless line.valid_encoding?
     PATTERNS.each do |re|
       line.scan(re) do |m|
-        file_hits << [line_no, m.to_s.strip]
+        file_hits << [line_no, m.to_s.strip, line]
       end
     end
   end
@@ -110,9 +122,9 @@ paths.each do |f|
   end
   next if exempt
 
-  file_hits.each do |line_no, frag|
+  file_hits.each do |line_no, frag, line|
     key = "#{f}:#{line_no}"
-    next if allowed.include?(key) || allowed.include?(frag)
+    next if line_keys.include?(key) || frag_rules.any? { |fr| line.b.include?(fr.b) }
     puts format("%s\t%s", key, frag[0, 60])
     hits += 1
   end
